@@ -1,0 +1,10 @@
+.nav {
+  grid-area: nav;
+  background-color: darkgrey;
+}
+
+.item {
+  color: #282c34;
+  font-size: xx-large;
+  font-weight: bold;
+}

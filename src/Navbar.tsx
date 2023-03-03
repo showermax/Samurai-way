@@ -1,21 +1,21 @@
 import React from "react";
-import "./Navbar.css"
+import style from "./Navbar.module.css"
 export function Navbar() {
     return (
-        <nav className="nav">
-            <div>
+        <nav className={style.nav}>
+            <div className={style.item}>
                 Profile
             </div>
-            <div>
+            <div className={style.item}>
                 Messages
             </div>
-            <div>
+            <div className={style.item}>
                 News
             </div>
-            <div>
+            <div className={style.item}>
                 Music
             </div>
-            <div>
+            <div className={style.item}>
                 Settings
             </div>
         </nav>

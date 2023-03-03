@@ -41,7 +41,6 @@
 .app-wrapper {
   width: 100%;
   display: grid;
-  align-items: center;
   grid-template-rows: 150px 1fr;
   grid-template-columns: 2fr 10fr;
   grid-gap:5px;

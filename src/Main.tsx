@@ -1,9 +1,9 @@
 import React from "react";
-
-import "./Main.css"
+//import "./Main.module.css";
+import style from "./Main.module.css"
 export function Main() {
     return (
-        <main className="main">
+        <main className={style.main}>
             <div>
                 subheader img
             </div>
@@ -16,9 +16,9 @@ export function Main() {
                     new post
                 </div>
                 <div>
-                    <div>post1</div>
-                    <div>post2</div>
-                    <div>post3</div>
+                    <div className={style.item}>post1</div>
+                    <div className={style.item}>post2</div>
+                    <div className={style.item}>post3</div>
                 </div>
             </div>
         </main>

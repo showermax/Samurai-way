@@ -1,0 +1,9 @@
+.main{
+  grid-area: main;
+  background-color: darkcyan;
+}
+
+.item {
+  color: aliceblue;
+  text-transform: uppercase;
+}
