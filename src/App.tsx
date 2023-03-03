@@ -2,12 +2,15 @@ import React from 'react';
 import './App.css';
 import {Technologies} from "./Technologies";
 import {Header} from "./Header";
+import {Navbar} from "./Navbar";
+import {Main} from "./Main";
 
 function App() {
     return (
-        <div>
+        <div className="app-wrapper">
             <Header/>
-            <Technologies />
+            <Navbar/>
+            <Main/>
         </div>
     );
 }
