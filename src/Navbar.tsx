@@ -1,6 +1,5 @@
 import React from "react";
-import App from "./App";
-
+import "./Navbar.css"
 export function Navbar() {
     return (
         <nav className="nav">

@@ -1,6 +1,6 @@
 import React from "react";
-import App from "./App";
 
+import "./Main.css"
 export function Main() {
     return (
         <main className="main">

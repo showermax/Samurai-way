@@ -49,18 +49,8 @@
   "header header"
   "nav main";
 }
-.header{
-grid-area: header;
-  background-color: green;
-}
-.header img{
-  height: 150px;
 
-}
-.nav {
-  grid-area: nav;
-  background-color: salmon;
-}
+
 .main{
   grid-area: main;
   background-color: darkcyan;
