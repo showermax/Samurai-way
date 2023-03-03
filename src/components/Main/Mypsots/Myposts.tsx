@@ -10,9 +10,9 @@ export function Myposts() {
             <div>
                 new post
             </div>
-            <Post/>
-            <Post/>
-            <Post/>
+            <Post message="The number one post"/>
+            <Post message="The second post"/>
+            <Post message="The post number three"/>
         </div>
     );
 }
