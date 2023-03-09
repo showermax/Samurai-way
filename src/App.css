@@ -1,5 +1,5 @@
-.App body {
-  background-color: #49c5b6;
+.App  {
+
 }
 
 .App-logo {
@@ -25,9 +25,7 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
+
 
 @keyframes App-logo-spin {
   from {
@@ -39,7 +37,6 @@
 }
 
 .app-wrapper {
-  background-color: #61dafb;
   width: 100%;
   height: 100%;
   display: grid;
@@ -53,5 +50,9 @@
 
 .main{
   grid-area: main;
-  background-color: darkcyan;
+  padding: 20px
+}
+a{
+  text-decoration: none;
+  color: inherit;
 }

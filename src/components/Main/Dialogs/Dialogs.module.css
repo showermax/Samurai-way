@@ -1,0 +1,31 @@
+.wrapper{
+    font-family: "Dubai Medium";
+    font-size: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    padiing: 5px;
+    grid-gap: 10px;
+}
+.dialogs {
+
+}
+.dialog_item {
+    position: relative;
+}
+.dialog_item:hover {
+    border-bottom: solid 1px;
+    border-color: deepskyblue;
+}
+
+.activeLink {
+    color: #DD6E42;
+}
+.dialog_item > a::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    content: "";
+}

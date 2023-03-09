@@ -1,6 +1,8 @@
 .nav {
   grid-area: nav;
   padding: 10px 20px;
+  border-right: solid 1px;
+  border-color: deepskyblue;
 }
 
 .item {
@@ -20,5 +22,5 @@ text-transform: uppercase;
 
 a.activeLink {
   text-transform: uppercase;
-  color: darkblue;
+  color: darkcyan;
 }
