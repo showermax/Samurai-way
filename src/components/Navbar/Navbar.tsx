@@ -7,7 +7,7 @@ export function Navbar() {
                 <a href='/profile'>Profile</a>
             </div>
             <div className={style.item}>
-                <a href='/messages'>Messages</a>
+                <a href='/dialogs'>Messages</a>
             </div>
             <div className={style.item}>
                 <a href='/news'> News</a>
