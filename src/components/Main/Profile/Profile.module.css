@@ -1,0 +1,17 @@
+.header {
+    height: 200px;
+    background: url(../../../img/clouds.jpg) no-repeat center bottom;
+    margin-top:10px;
+}
+
+.description {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    align-items: center;
+}
+
+.avatar {
+    margin: 10px;
+    height: 100px;
+    border-radius: 50px;
+}

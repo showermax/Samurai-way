@@ -1,15 +1,15 @@
 import React from "react";
-//import "./Profile.module.css";
 import style from "./Myposts.module.css"
 import {Post} from "./Post/Post";
 
 export function Myposts() {
     return (
-        <div>
-            my post
+        <div className={style.wrapper}>
             <div>
-                new post
+                <textarea className={style.textarea}> </textarea>
             </div>
+            <button> Public the post </button>
+
             <Post message="The number one post"/>
             <Post message="The second post"/>
             <Post message="The post number three"/>

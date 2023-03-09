@@ -2,3 +2,16 @@
   color: aliceblue;
   text-transform: uppercase;
 }
+.wrapper{
+  margin: 0 auto;
+  padding: 10px;
+}
+.textarea {
+  width: 80%;
+  height: 200px;
+  border-radius: 20px;
+}
+
+button {
+
+}
