@@ -13,7 +13,7 @@ function App() {
                 <Header/>
                 <Navbar/>
                 <div className='main'>
-                    <Route path='/profile' component={Profile}/>
+                    <Route path='/profile'><Profile /></Route>
                     <Route path='/dialogs' component={Dialogs} />
                     <Route path='/news' component={Profile} />
                     <Route path='/music' component={Dialogs} />

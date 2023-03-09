@@ -1,8 +1,17 @@
 .header{
   grid-area: header;
-  background-color: green;
+  background-color: #49c5b6;
+
 }
 .header img{
   height: 150px;
+  float: left;
+}
+
+.brand {
+  font-family: "Berlin Sans FB";
+  position: relative;
+  font-size: 50px;
+  margin-top: 2%;
 
 }
