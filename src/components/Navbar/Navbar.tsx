@@ -4,19 +4,19 @@ export function Navbar() {
     return (
         <nav className={style.nav}>
             <div className={style.item}>
-                Profile
+                <a href='/profile'>Profile</a>
             </div>
             <div className={style.item}>
-                Messages
+                <a href='/messages'>Messages</a>
             </div>
             <div className={style.item}>
-                News
+                <a href='/news'> News</a>
             </div>
             <div className={style.item}>
-                Music
+                <a href='/music'> Music</a>
             </div>
             <div className={style.item}>
-                Settings
+                <a href='/settings'> Settings</a>
             </div>
         </nav>
     );
