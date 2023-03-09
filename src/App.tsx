@@ -18,7 +18,6 @@ function App() {
                     <Route path='/news' component={Profile} />
                     <Route path='/music' component={Dialogs} />
                     <Route path='/settings' component={Dialogs} />
-
                 </div>
             </div>
         </BrowserRouter>

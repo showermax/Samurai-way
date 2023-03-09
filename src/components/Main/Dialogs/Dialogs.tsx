@@ -1,7 +1,8 @@
 import React from "react";
 //import "./Profile.module.css";
 import style from "./Dialogs.module.css"
-import {NavLink} from "react-router-dom";
+import {NavLink, Route} from "react-router-dom";
+import {Profile} from "../Profile/Profile";
 
 type DialogsType = {
     id: number
@@ -30,7 +31,10 @@ export function Dialogs() {
                 </div>)}
             </div>
             <div className={style.messages}>
-                <div className={style.messages1}>Hi</div>
+                <div className={style.messages1}>
+                    <Route path='/dialogs/Danik'><Profile /></Route>
+                </div>
+
                 <div className={style.messages2}>hey</div>
                 <div className={style.messages1}>how's it going</div>
                 <div className={style.messages1}>home?</div>
