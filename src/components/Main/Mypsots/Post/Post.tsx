@@ -1,15 +1,16 @@
 import React from "react";
-//import "./Profile.module.css";
 import style from "./Post.module.css"
+import picture from "./post.jpg"
 type PostType = {
     message: string
 }
 export function Post(props: PostType) {
     return (
-        <div>
-            <div className={style.item}><img src="https://i.pinimg.com/originals/d3/ca/84/d3ca841ef0f604041f9fa07702297954.jpg" alt="main picture"/>post1</div>
-            <div>Like</div>
+        <div className={style.item}>
+            <div><img src={picture} alt="main picture"/></div>
             <div>{props.message}</div>
+            <div>Like</div>
+
         </div>
     );
 }

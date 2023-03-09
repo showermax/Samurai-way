@@ -1,6 +1,8 @@
 .item {
-  color: aliceblue;
-  text-transform: uppercase;
+  margin: 10px;
+  display: grid;
+  width: 60%;
+  grid-template-columns: 100px 1fr;
 }
 .item img {
   width: 100px;
