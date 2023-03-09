@@ -1,9 +1,9 @@
 import React from "react";
-//import "./Main.module.css";
+//import "./Profile.module.css";
 import style from "../Main/Main.module.css"
 import {Myposts} from "./Mypsots/Myposts";
 
-export function Main() {
+export function Profile() {
     return (
         <main className={style.main}>
             <div>

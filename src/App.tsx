@@ -3,14 +3,18 @@ import './App.css';
 import {Technologies} from "./Technologies";
 import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
-import {Main} from "./components/Main/Main";
+import {Profile} from "./components/Main/Profile";
+import {Dialogs} from "./components/Main/Dialogs/Dialogs";
 
 function App() {
     return (
         <div className="app-wrapper">
             <Header/>
             <Navbar/>
-            <Main/>
+            <div className='main'>
+                {/*<Profile/>*/}
+                <Dialogs />
+            </div>
         </div>
     );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-//import "./Main.module.css";
+//import "./Profile.module.css";
 import style from "./Post.module.css"
 type PostType = {
     message: string
