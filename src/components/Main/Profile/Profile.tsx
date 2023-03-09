@@ -1,7 +1,7 @@
 import React from "react";
 //import "./Profile.module.css";
-import style from "../Main/Main.module.css"
-import {Myposts} from "./Mypsots/Myposts";
+import style from "./Profile.module.css"
+import {Myposts} from "../Mypsots/Myposts";
 
 export function Profile() {
     return (
