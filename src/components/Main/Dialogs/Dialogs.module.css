@@ -29,3 +29,8 @@
     z-index: 1;
     content: "";
 }
+
+.messages1{
+    text-align: right;
+    background-color: white;
+}

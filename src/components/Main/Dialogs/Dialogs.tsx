@@ -1,45 +1,34 @@
 import React from "react";
 //import "./Profile.module.css";
 import style from "./Dialogs.module.css"
-import {NavLink, Route} from "react-router-dom";
+import {NavLink, Route, Routes} from "react-router-dom";
 import {Profile} from "../Profile/Profile";
+import {DialogsType, MessageType} from "../../../App";
+import path from "path";
+import {Messages} from "./Messages";
 
-type DialogsType = {
-    id: number
-    name: string
+type PropsType = {
+    messageList: Array<MessageType>,
+    dialogList: Array<DialogsType>
 }
 
-export function Dialogs() {
-    type DialogsType = {
-        id: number
-        name: string
-    }
-    const dialogsList: Array<DialogsType> = [
-        {id: 1, name: 'Danik'},
-        {id: 2, name: 'Kirill'},
-        {id: 3, name: 'Ivan'},
-        {id: 4, name: 'Denis'},
-        {id: 5, name: 'Andrei'},
-        {id: 6, name: 'Demiyan'},
-        {id: 7, name: 'Arsenyi'}
-    ]
-
+export function Dialogs(props: PropsType) {
     return (
         <div className={style.wrapper}>
             <div className={style.dialogs}>
-                {dialogsList.map(el => <div className={style.dialog_item}>
-                    <NavLink to={'/dialogs/' + el.name} activeClassName={style.activeLink}>{el.name}</NavLink>
+                {props.dialogList.map(el => <div className={style.dialog_item}>
+                    <NavLink to={'/dialogs/' + el.name} className={style.activeLink}>{el.name}</NavLink>
                 </div>)}
             </div>
             <div className={style.messages}>
-                <div className={style.messages1}>
-                    <Route path='/dialogs/Danik'><Profile /></Route>
+
+                <div>
+                    <Routes>
+                    <Route path={'/dialogs/Danik'} element = {<Messages messageList={props.messageList}/>} />
+                {/*props.messageList.map((el,i)=> <div key={i} className={(el.author==='me') ? style.messages1 : style.messages2}> {el.text}*/}
+            </Routes>
                 </div>
 
-                <div className={style.messages2}>hey</div>
-                <div className={style.messages1}>how's it going</div>
-                <div className={style.messages1}>home?</div>
-                <div className={style.messages2}>yeah, chilling .. you?</div>
             </div>
         </div>
     );
