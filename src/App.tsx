@@ -5,8 +5,10 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Main/Profile/Profile";
 import {Dialogs} from "./components/Main/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
+import {AppPropsType} from "./types";
 
-function App() {
+
+function App(props: AppPropsType) {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -14,7 +16,7 @@ function App() {
                 <Navbar/>
                 <div className='main'>
                     <Route path='/profile'><Profile /></Route>
-                    <Route path='/dialogs' component={Dialogs} />
+                    <Route path='/dialogs'><Dialogs dialog = {props.dialog}/></Route>
                     <Route path='/news' component={Profile} />
                     <Route path='/music' component={Dialogs} />
                     <Route path='/settings' component={Dialogs} />

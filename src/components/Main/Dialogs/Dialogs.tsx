@@ -3,17 +3,15 @@ import React from "react";
 import style from "./Dialogs.module.css"
 import {NavLink, Route} from "react-router-dom";
 import {Profile} from "../Profile/Profile";
+import {AppPropsType} from "../../../types";
 
 type DialogsType = {
     id: number
     name: string
 }
 
-export function Dialogs() {
-    type DialogsType = {
-        id: number
-        name: string
-    }
+export function Dialogs(props: AppPropsType) {
+
     const dialogsList: Array<DialogsType> = [
         {id: 1, name: 'Danik'},
         {id: 2, name: 'Kirill'},
@@ -33,13 +31,8 @@ export function Dialogs() {
             </div>
             <div className={style.messages}>
                 <div className={style.messages1}>
-                    <Route path='/dialogs/Danik'><Profile /></Route>
+                    <Route path='/dialogs/Danik'>{props.dialog[0].chat.map(el=><div className={style.messages2}>{el.text}</div>)}</Route>
                 </div>
-
-                <div className={style.messages2}>hey</div>
-                <div className={style.messages1}>how's it going</div>
-                <div className={style.messages1}>home?</div>
-                <div className={style.messages2}>yeah, chilling .. you?</div>
             </div>
         </div>
     );
