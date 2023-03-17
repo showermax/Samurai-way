@@ -29,3 +29,13 @@
     z-index: 1;
     content: "";
 }
+.messages{
+    max-width: 600px;
+}
+.messages1{
+    text-align:right;
+}
+.messages2{
+    text-align:left;
+    color: #DD6E42;
+}

@@ -16,7 +16,7 @@ function App(props: AppPropsType) {
                 <Navbar/>
                 <div className='main'>
                     <Route path='/profile'><Profile /></Route>
-                    <Route path='/dialogs'><Dialogs dialog = {props.dialog}/></Route>
+                    <Route path='/dialogs'><Dialogs dialog = {props.dialog} dialogsList={props.dialogsList}/></Route>
                     <Route path='/news' component={Profile} />
                     <Route path='/music' component={Dialogs} />
                     <Route path='/settings' component={Dialogs} />

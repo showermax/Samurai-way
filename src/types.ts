@@ -4,6 +4,7 @@ export type DialogsType = {
 }
 export type  AppPropsType = {
     dialog: Array<ChatMessagesType>
+    dialogsList: Array<DialogsType>
 }
 
 export type ChatMessagesType = {

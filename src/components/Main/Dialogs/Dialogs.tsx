@@ -30,8 +30,9 @@ export function Dialogs(props: AppPropsType) {
                 </div>)}
             </div>
             <div className={style.messages}>
-                <div className={style.messages1}>
-                    <Route path='/dialogs/Danik'>{props.dialog[0].chat.map(el=><div className={style.messages2}>{el.text}</div>)}</Route>
+                <div>
+                    <Route path='/dialogs/Danik'>{props.dialog[0].chat.map(el=><div className={el.author? style.messages1: style.messages2}>{el.text}</div>)}</Route>
+                    <Route path='/dialogs/Kirill'>{props.dialog[1].chat.map(el=><div className={el.author? style.messages1: style.messages2}>{el.text}</div>)}</Route>
                 </div>
             </div>
         </div>

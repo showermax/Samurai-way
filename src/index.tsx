@@ -37,6 +37,6 @@ const dialogsList: Array<DialogsType> = [
 ]
 
 ReactDOM.render(
-    <App dialog={chatMessages}/>,
+    <App dialog={chatMessages} dialogsList={dialogsList}/>,
     document.getElementById('root')
 );
