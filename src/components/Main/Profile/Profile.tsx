@@ -3,12 +3,13 @@ import React from "react";
 import style from "./Profile.module.css"
 import {Myposts} from "../Mypsots/Myposts";
 import {ProfileInfo} from "./ProfileInfo";
+import {AppPropsType, PostPropsType} from "../../../types";
 
-export function Profile() {
+export function Profile(props: PostPropsType) {
     return (
         <main className={style.main}>
             <ProfileInfo/>
-            <Myposts/>
+            <Myposts posts={props.posts}/>
         </main>
     );
 }
