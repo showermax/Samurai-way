@@ -4,11 +4,12 @@ import style from "./Dialogs.module.css"
 import {NavLink, Route} from "react-router-dom";
 import {Profile} from "../Profile/Profile";
 import {AppPropsType} from "../../../types";
+import {ForDialogsType} from "../../../redux/state";
 
-export function Dialogs(props: AppPropsType) {
+export function Dialogs(props: ForDialogsType) {
 
     const chatRender =
-        props.dialog.map(el =>
+        props.chatMessages.map(el =>
             <Route path={'/dialogs/'+el.friend}>
                 {el.chat.map(el2=><div className={el2.author? style.messages1: style.messages2}>{el2.text}</div>)}
             </Route> )

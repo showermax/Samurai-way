@@ -4,12 +4,13 @@ import style from "./Profile.module.css"
 import {Myposts} from "../Mypsots/Myposts";
 import {ProfileInfo} from "./ProfileInfo";
 import {AppPropsType, PostPropsType} from "../../../types";
+import {PostsListType} from "../../../redux/state";
 
-export function Profile(props: PostPropsType) {
+export function Profile(props: PostsListType[]) {
     return (
         <main className={style.main}>
             <ProfileInfo/>
-            <Myposts posts={props.posts}/>
+            <Myposts postsList={props.postsList}/>
         </main>
     );
 }

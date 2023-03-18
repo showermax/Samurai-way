@@ -1,4 +1,3 @@
-import {ChatMessagesType, DialogsType, PostsListType} from "../types";
 
 // const chatMessages: Array<ChatMessagesType> = [
 //     {
@@ -48,38 +47,73 @@ import {ChatMessagesType, DialogsType, PostsListType} from "../types";
 //     }
 // ]
 
-export let state = {
-    chatMessages: [
-        {
-            friend_id: 1,
-            friend: 'Danik',
-            chat: [
-                {id: 1, text: 'wanna go for a walk?', author: true},
-                {id: 2, text: 'yeah, great', author: false},
-                {id: 3, text: 'so tired sitting at home', author: false},
-                {id: 4, text: 'I\'ll be ready in 15 minutes', author: true}
-            ]
-        },
-        {
-            friend_id: 2,
-            friend: 'Kirill',
-            chat: [
-                {id: 1, text: 'hey!', author: true},
-                {id: 2, text: 'hi, how\'s it going?', author: false},
-                {id: 3, text: 'okay, are you at home?', author: true},
-                {id: 4, text: 'yeah, chilling ... you?', author: false}
-            ]
-        }
-    ],
-    dialogsList: [
-        {id: 1, name: 'Danik'},
-        {id: 2, name: 'Kirill'},
-        {id: 3, name: 'Ivan'},
-        {id: 4, name: 'Denis'},
-        {id: 5, name: 'Andrei'},
-        {id: 6, name: 'Demiyan'},
-        {id: 7, name: 'Arsenyi'}
-    ],
+export type DialogsType = {
+    id: number
+    name: string
+}
+
+export type ChatMessagesType = {
+    friend_id: number
+    friend: string
+    chat: Array<ChatType>
+
+}
+type ChatType = {
+    id: number
+    text: string
+    author: boolean
+}
+
+export type PostsListType = {
+    userId: number,
+    id: number,
+    title: string,
+    body: string
+}
+export type ForDialogsType = {
+    chatMessages: Array<ChatMessagesType>
+    dialogsList: Array<DialogsType>
+}
+
+export type StateType = {
+    forDialogs: ForDialogsType
+    postsList: PostsListType[]
+}
+
+export let state: StateType = {
+    forDialogs: {
+        chatMessages: [
+            {
+                friend_id: 1,
+                friend: 'Danik',
+                chat: [
+                    {id: 1, text: 'wanna go for a walk?', author: true},
+                    {id: 2, text: 'yeah, great', author: false},
+                    {id: 3, text: 'so tired sitting at home', author: false},
+                    {id: 4, text: 'I\'ll be ready in 15 minutes', author: true}
+                ]
+            },
+            {
+                friend_id: 2,
+                friend: 'Kirill',
+                chat: [
+                    {id: 1, text: 'hey!', author: true},
+                    {id: 2, text: 'hi, how\'s it going?', author: false},
+                    {id: 3, text: 'okay, are you at home?', author: true},
+                    {id: 4, text: 'yeah, chilling ... you?', author: false}
+                ]
+            }
+        ],
+        dialogsList: [
+            {id: 1, name: 'Danik'},
+            {id: 2, name: 'Kirill'},
+            {id: 3, name: 'Ivan'},
+            {id: 4, name: 'Denis'},
+            {id: 5, name: 'Andrei'},
+            {id: 6, name: 'Demiyan'},
+            {id: 7, name: 'Arsenyi'}
+        ]
+    },
     postsList: [
         {
             userId: 1,

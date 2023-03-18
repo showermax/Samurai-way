@@ -6,17 +6,19 @@ import {Profile} from "./components/Main/Profile/Profile";
 import {Dialogs} from "./components/Main/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import {AppPropsType} from "./types";
+import {StateType} from "./redux/state";
+import {state} from './redux/state'
 
 
-function App(props: AppPropsType) {
+function App() {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
                 <Header/>
                 <Navbar/>
                 <div className='main'>
-                    <Route path='/profile'><Profile posts={props.posts}/></Route>
-                    <Route path='/dialogs'><Dialogs dialog = {props.dialog} dialogsList={props.dialogsList}/></Route>
+                    <Route path='/profile'><Profile postsList={state.postsList}/></Route>
+                    <Route path='/dialogs'><Dialogs chatMessages = {state.forDialogs.chatMessages} dialogsList={state.forDialogs.dialogsList}/></Route>
                     <Route path='/news' component={Profile} />
                     <Route path='/music' component={Dialogs} />
                     <Route path='/settings' component={Dialogs} />
