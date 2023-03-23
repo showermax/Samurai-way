@@ -138,5 +138,8 @@ export let state: StateType = {
     }
 }
 export const addMessage = (newmessage: string) =>{
-    console.log(newmessage)
+    state.forDialogs.chatMessages.map(el=>el.friend_id===1 ? console.log('herr') : el)
+
 }
+
+// {...el,[...el.chat, {id: 5, text:newmessage,author: true}]}
