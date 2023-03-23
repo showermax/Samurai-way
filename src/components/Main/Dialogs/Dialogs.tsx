@@ -6,24 +6,28 @@ import {Profile} from "../Profile/Profile";
 import {AppPropsType} from "../../../types";
 import {ChatMessagesType, DialogsType, ForDialogsType} from "../../../redux/state";
 
-type DialogsPropsType ={
+type DialogsPropsType = {
     chatMessages: Array<ChatMessagesType>
     dialogsList: Array<DialogsType>
 
-    addMessage: (s: string)=> void
+    addMessage: (s: string, id: number) => void
 }
+
 export function Dialogs(props: DialogsPropsType) {
     const messageField = useRef<HTMLTextAreaElement>(null)
-    const sendButtonHandler = () =>
-        props.addMessage(messageField.current!.value)
+    const sendButtonHandler = (id: number) =>
+        props.addMessage(messageField.current!.value, id)
     const chatRender =
         props.chatMessages.map(el =>
-            <Route path={'/dialogs/'+el.friend}>
-                {el.chat.map(el2=><div className={el2.author? style.messages1: style.messages2}>{el2.text}</div>)}
-                <textarea ref={messageField}>type...</textarea><button onClick={sendButtonHandler}>Send</button>
-            </Route> )
+            <Route path={'/dialogs/' + el.friend}>
+                {el.chat.map(el2 => <div className={el2.author ? style.messages1 : style.messages2}>{el2.text}</div>)}
+                <div className={style.sendForm}>
+                    <textarea ref={messageField} className={style.textarea} placeholder={'Type...'}/>
+                    <button onClick={() => sendButtonHandler(el.friend_id)} className={style.button}>Send</button>
+                </div>
+            </Route>)
 
-    const textareaOnChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) =>{
+    const textareaOnChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         //props.setNewMessages(e.currentTarget.value)
     }
 
