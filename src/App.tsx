@@ -11,7 +11,7 @@ import {StateType} from "./redux/state";
 
 type AppPropsType ={
     state: StateType
-    addMessage: (s: string, id: number)=> void
+    addMessage: (s: string, id: number, author: boolean)=> void
 }
 
 function App(props: AppPropsType) {

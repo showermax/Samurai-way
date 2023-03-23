@@ -139,8 +139,8 @@ export let state: StateType = {
         ]
     }
 }
-export const addMessage = (newmessage: string, id: number) =>{
-    const newChatMessages = state.forDialogs.chatMessages.map(el=>el.friend_id===id ? {...el, chat: [...el.chat, {id: el.chat.length+1, text:newmessage, author: true}]} : el)
+export const addMessage = (newmessage: string, id: number, author: boolean) =>{
+    const newChatMessages = state.forDialogs.chatMessages.map(el=>el.friend_id===id ? {...el, chat: [...el.chat, {id: el.chat.length+1, text:newmessage, author: author}]} : el)
     const newState = {...state, forDialogs: {...state.forDialogs, chatMessages: newChatMessages}}
     state = newState
     rerenderEntireTree (state)

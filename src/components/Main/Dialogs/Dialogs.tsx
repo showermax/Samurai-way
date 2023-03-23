@@ -10,20 +10,23 @@ type DialogsPropsType = {
     chatMessages: Array<ChatMessagesType>
     dialogsList: Array<DialogsType>
 
-    addMessage: (s: string, id: number) => void
+    addMessage: (s: string, id: number, author: boolean) => void
 }
 
 export function Dialogs(props: DialogsPropsType) {
     const messageField = useRef<HTMLTextAreaElement>(null)
-    const sendButtonHandler = (id: number) =>
-        props.addMessage(messageField.current!.value, id)
+    const sendButtonHandler = (id: number, author: boolean) => {
+        props.addMessage(messageField.current!.value, id, author)
+        messageField.current!.value = ''
+    }
     const chatRender =
         props.chatMessages.map(el =>
             <Route path={'/dialogs/' + el.friend}>
                 {el.chat.map(el2 => <div className={el2.author ? style.messages1 : style.messages2}>{el2.text}</div>)}
+                <button onClick={() => sendButtonHandler(el.friend_id, false)}> get the answer</button>
                 <div className={style.sendForm}>
                     <textarea ref={messageField} className={style.textarea} placeholder={'Type...'}/>
-                    <button onClick={() => sendButtonHandler(el.friend_id)} className={style.button}>Send</button>
+                    <button onClick={() => sendButtonHandler(el.friend_id,  true)} className={style.button}>Send</button>
                 </div>
             </Route>)
 
