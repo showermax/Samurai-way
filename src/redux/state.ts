@@ -48,6 +48,8 @@
 // ]
 
 
+import {rerenderEntireTree} from "../render";
+
 export type DialogsType = {
     id: number
     name: string
@@ -138,8 +140,9 @@ export let state: StateType = {
     }
 }
 export const addMessage = (newmessage: string) =>{
-    state.forDialogs.chatMessages.map(el=>el.friend_id===1 ? console.log('herr') : el)
-
+    const newChatMessages = state.forDialogs.chatMessages.map(el=>el.friend_id===1 ? {...el, chat: [...el.chat, {id: el.chat.length+1, text:newmessage, author: true}]} : el)
+    const newState = {...state, forDialogs: {...state.forDialogs, chatMessages: newChatMessages}}
+    rerenderEntireTree (newState)
 }
 
 // {...el,[...el.chat, {id: 5, text:newmessage,author: true}]}
