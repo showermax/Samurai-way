@@ -146,4 +146,3 @@ export const addMessage = (newmessage: string, id: number, author: boolean) =>{
     rerenderEntireTree (state)
 }
 
-// {...el,[...el.chat, {id: 5, text:newmessage,author: true}]}
