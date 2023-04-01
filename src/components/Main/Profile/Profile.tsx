@@ -5,13 +5,15 @@ import {Myposts} from "../Mypsots/Myposts";
 import {ProfileInfo} from "./ProfileInfo";
 import {AppPropsType, PostPropsType} from "../../../types";
 import {ForProfileType, PostsListType} from "../../../redux/state";
-
-export function Profile(props: ForProfileType) {
+type PropsType ={
+    postsList: PostsListType[]
+    addPost: (t: string, c: string)=> void
+}
+export function Profile(props: PropsType) {
     return (
         <main className={style.main}>
             <ProfileInfo/>
-
-            <Myposts postsList={props.postsList}/>
+            <Myposts postsList={props.postsList} addPost={props.addPost}/>
         </main>
     );
 }

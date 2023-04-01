@@ -2,15 +2,15 @@ import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {addMessage, state, StateType} from './redux/state'
+import {addMessage, addPost, state, StateType, subscribe} from './redux/state'
 
 
-function rerenderEntireTree (state: StateType) {
+function rerenderEntireTree () {
     ReactDOM.render(
-        <App state = {state} addMessage={addMessage}/>,
+        <App state={state} addMessage={addMessage} addPost={addPost}/>,
         document.getElementById('root')
     );
 }
+rerenderEntireTree()
 
-
-rerenderEntireTree (state)
+subscribe(rerenderEntireTree)

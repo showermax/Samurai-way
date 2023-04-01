@@ -12,6 +12,7 @@ import {StateType} from "./redux/state";
 type AppPropsType ={
     state: StateType
     addMessage: (s: string, id: number, author: boolean)=> void
+    addPost: (t: string, c: string)=> void
 }
 
 function App(props: AppPropsType) {
@@ -21,7 +22,7 @@ function App(props: AppPropsType) {
                 <Header/>
                 <Navbar/>
                 <div className='main'>
-                    <Route path='/profile'><Profile postsList={props.state.forProfile.postsList}/></Route>
+                    <Route path='/profile'><Profile postsList={props.state.forProfile.postsList} addPost={props.addPost}/></Route>
                     <Route path='/dialogs'><Dialogs chatMessages = {props.state.forDialogs.chatMessages} dialogsList={props.state.forDialogs.dialogsList} addMessage={props.addMessage}/></Route>
                     <Route path='/news' component={Profile} />
                     <Route path='/music' component={Dialogs} />
