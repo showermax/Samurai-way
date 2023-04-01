@@ -1,18 +1,23 @@
-.header{
-  grid-area: header;
-  background-color: #DD6E42;
-  box-shadow: 0px 2px 25px black;
-
+.header {
+    grid-area: header;
+    background: #25272A;
+    mix-blend-mode: normal;
+    opacity: 0.75;
+    box-shadow: 0px 2px 25px black;
+    display: flex;
+    padding: 5px;
+    gap: 10px;
 }
-.header img{
-  height: 150px;
-  float: left;
+
+.header img {
+    float: left;
 }
 
 .brand {
-  font-family: "Berlin Sans FB";
-  position: relative;
-  font-size: 50px;
-  margin-top: 2%;
+    font-family: "Berlin Sans FB";
+    position: relative;
+    align-self: center;
+    color:white;
+    font-size: 24px;
 
 }

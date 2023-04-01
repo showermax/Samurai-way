@@ -5,8 +5,8 @@ import logo from "../../logo192.png"
 export function Header() {
     return (
         <header className={style.header}>
-          <img src={logo}/>
-            <div className={style.brand}>bestSN</div>
+            <img src={logo}/>
+            <div className={style.brand}>Stay in touch</div>
         </header>
     );
 }
