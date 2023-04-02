@@ -4,7 +4,7 @@ import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Main/Profile/Profile";
 import {Dialogs} from "./components/Main/Dialogs/Dialogs";
-import {BrowserRouter, Route} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 import {StateType} from "./redux/state";
 
@@ -22,11 +22,13 @@ function App(props: AppPropsType) {
                 <Header/>
                 <Navbar/>
                 <div className='main'>
-                    <Route path='/profile'><Profile postsList={props.state.forProfile.postsList} addPost={props.addPost}/></Route>
-                    <Route path='/dialogs'><Dialogs chatMessages = {props.state.forDialogs.chatMessages} dialogsList={props.state.forDialogs.dialogsList} addMessage={props.addMessage}/></Route>
-                    <Route path='/news' component={Profile} />
-                    <Route path='/music' component={Dialogs} />
-                    <Route path='/settings' component={Dialogs} />
+                    <Routes>
+                            <Route path='/profile' element={<Profile postsList={props.state.forProfile.postsList} addPost={props.addPost}/>} />
+                            <Route path='/dialogs/*' element={<Dialogs chatMessages = {props.state.forDialogs.chatMessages} dialogsList={props.state.forDialogs.dialogsList} addMessage={props.addMessage}/>} />
+                            {/*<Route path='/news' component={Profile} />*/}
+                            {/*<Route path='/music' component={Dialogs} />*/}
+                             {/*<Route path='/settings' component={Dialogs} />*/}
+                    </Routes>
                 </div>
             </div>
         </BrowserRouter>
