@@ -12,7 +12,7 @@ export type ChatMessagesType = {
     chat: Array<ChatType>
 
 }
-type ChatType = {
+export type ChatType = {
     id: number
     text: string
     author: boolean
