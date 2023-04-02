@@ -7,11 +7,7 @@ export function Navbar() {
     return (
         <nav className={style.nav}>
             <div className={style.item}>
-
                 <NavLink to='/profile' >Profile</NavLink>
-
-                
-
             </div>
             <div className={style.item}>
                 <NavLink to='/dialogs' >Messages</NavLink>
