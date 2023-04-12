@@ -7,12 +7,14 @@ import {ForProfileType} from "../../../redux/state";
 type PropsType ={
     postsList: PostsListType[]
     addPost: (t: string, c: string)=> void
+    dispatch:any
 }
 export function Myposts(props: PropsType) {
     const textAreaTitle = useRef<HTMLTextAreaElement>(null)
     const textAreaBody = useRef<HTMLTextAreaElement>(null)
     const addPostHandler = () =>{
-        props.addPost(textAreaTitle.current!.value, textAreaBody.current!.value)
+        //props.addPost(textAreaTitle.current!.value, textAreaBody.current!.value)
+        props.dispatch({type: 'ADD-POST', payload: {title: textAreaTitle.current!.value, content: textAreaBody.current!.value}})
     }
     return (
         <div className={style.wrapper}>

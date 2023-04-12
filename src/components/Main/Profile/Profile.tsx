@@ -8,12 +8,13 @@ import {ForProfileType, PostsListType} from "../../../redux/state";
 type PropsType ={
     postsList: PostsListType[]
     addPost: (t: string, c: string)=> void
+    dispatch:any
 }
 export function Profile(props: PropsType) {
     return (
         <main className={style.main}>
             <ProfileInfo/>
-            <Myposts postsList={props.postsList} addPost={props.addPost}/>
+            <Myposts postsList={props.postsList} addPost={props.addPost} dispatch={props.dispatch}/>
         </main>
     );
 }
