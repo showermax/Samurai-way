@@ -44,8 +44,9 @@ export type StoreType = {
     subscribe:(observer: () => void)=>void
     addPost: (title: string, content: string)=> void
     addMessage:(newmessage: string, id: number, author: boolean)=> void
-
+    dispatch:any
 }
+type DispatchType = ReturnType<any>
 export const store:StoreType = {
     _subscriber() {
     },
@@ -118,6 +119,12 @@ export const store:StoreType = {
         } : el)
         this._state = {...this._state, forDialogs: {...this._state.forDialogs, chatMessages: newChatMessages}}
         this._subscriber()
+    },
+    dispatch(action:any) {
+        switch (action.type) {
+            case 'ADD-MESSAGE': return this.addMessage(action.payload.title, action.payload.id, action.payload.author)
+            case 'ADD-POST': return this.addPost(action.payload.title, action.payload.content)
+        }
     }
 }
 
