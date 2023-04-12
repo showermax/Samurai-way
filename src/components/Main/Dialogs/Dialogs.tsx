@@ -4,20 +4,19 @@ import style from "./Dialogs.module.css"
 import {NavLink, Route, Routes} from "react-router-dom";
 import {Profile} from "../Profile/Profile";
 import {AppPropsType} from "../../../types";
-import {ChatMessagesType, DialogsType, ForDialogsType} from "../../../redux/state";
+import {addMessageAC, ChatMessagesType, DialogsType, DispatchType, ForDialogsType} from "../../../redux/state";
 import Chat from "./Chat";
 
 type DialogsPropsType = {
     chatMessages: Array<ChatMessagesType>
     dialogsList: Array<DialogsType>
-
-    addMessage: (s: string, id: number, author: boolean) => void
+    dispatch: DispatchType
 }
 
 export function Dialogs(props: DialogsPropsType) {
     const messageField = useRef<HTMLTextAreaElement>(null)
     const sendButtonHandler = (id: number, author: boolean) => {
-        props.addMessage(messageField.current!.value, id, author)
+        props.dispatch(addMessageAC(messageField.current!.value, id, author))
         messageField.current!.value = ''
     }
     return (

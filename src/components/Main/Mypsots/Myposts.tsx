@@ -2,12 +2,12 @@ import React, {useRef} from "react";
 import style from "./Myposts.module.css"
 import {Post} from "./Post/Post";
 import {PostPropsType, PostsListType} from "../../../types";
-import {ForProfileType} from "../../../redux/state";
+import {DispatchType, ForProfileType} from "../../../redux/state";
 
 type PropsType ={
     postsList: PostsListType[]
-    addPost: (t: string, c: string)=> void
-    dispatch:any
+
+    dispatch:DispatchType
 }
 export function Myposts(props: PropsType) {
     const textAreaTitle = useRef<HTMLTextAreaElement>(null)

@@ -46,7 +46,7 @@ export type StoreType = {
     addMessage:(newmessage: string, id: number, author: boolean)=> void
     dispatch:any
 }
-type DispatchType = ReturnType<any>
+export type DispatchType = any
 export const store:StoreType = {
     _subscriber() {
     },
@@ -128,6 +128,7 @@ export const store:StoreType = {
     }
 }
 
+export const addMessageAC = (title:string, id: number, author:boolean) => ({type: 'ADD-MESSAGE', payload:{title: title, id: id, author: author}})
 // export let state: StateType = {
 //     forDialogs: {
 //         chatMessages: [

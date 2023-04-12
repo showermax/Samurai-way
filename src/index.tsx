@@ -7,7 +7,7 @@ import {store} from './redux/state'
 
 function rerenderEntireTree () {
     ReactDOM.render(
-        <App state={store._state} dispatch={store.dispatch} addMessage={store.addMessage.bind(store)} addPost={store.addPost.bind(store)}/>,
+        <App state={store._state} dispatch={store.dispatch.bind(store)} />,
         document.getElementById('root')
     );
 }

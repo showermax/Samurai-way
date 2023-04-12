@@ -11,8 +11,6 @@ import {StateType} from "./redux/state";
 
 type AppPropsType ={
     state: StateType
-    addMessage: (s: string, id: number, author: boolean)=> void
-    addPost: (t: string, c: string)=> void
     dispatch:any
 }
 
@@ -24,8 +22,8 @@ function App(props: AppPropsType) {
                 <Navbar/>
                 <div className='main'>
                     <Routes>
-                            <Route path='/profile' element={<Profile postsList={props.state.forProfile.postsList} addPost={props.addPost} dispatch={props.dispatch}/>} />
-                            <Route path='/dialogs/*' element={<Dialogs chatMessages = {props.state.forDialogs.chatMessages} dialogsList={props.state.forDialogs.dialogsList} addMessage={props.addMessage}/>} />
+                            <Route path='/profile' element={<Profile postsList={props.state.forProfile.postsList} dispatch={props.dispatch}/>} />
+                            <Route path='/dialogs/*' element={<Dialogs chatMessages = {props.state.forDialogs.chatMessages} dialogsList={props.state.forDialogs.dialogsList} dispatch={props.dispatch}/>} />
                             {/*<Route path='/news' component={Profile} />*/}
                             {/*<Route path='/music' component={Dialogs} />*/}
                              {/*<Route path='/settings' component={Dialogs} />*/}
