@@ -1,6 +1,8 @@
 // let rerenderEntireTree = () => {
 // }
 
+import {addPostAC, ProfileReducer} from "./profileReducer";
+
 export type DialogsType = {
     id: number
     name: string
@@ -121,10 +123,12 @@ export const store:StoreType = {
         this._subscriber()
     },
     dispatch(action:any) {
-        switch (action.type) {
-            case 'ADD-MESSAGE': return this.addMessage(action.payload.title, action.payload.id, action.payload.author)
-            case 'ADD-POST': return this.addPost(action.payload.title, action.payload.content)
-        }
+        this._state.forProfile = ProfileReducer(this._state.forProfile, action)
+        this._subscriber()
+        // switch (action.type) {
+        //     case 'ADD-MESSAGE': return this.addMessage(action.payload.title, action.payload.id, action.payload.author)
+        //     case 'ADD-POST': return this.addPost(action.payload.title, action.payload.content)
+        // }
     }
 }
 
