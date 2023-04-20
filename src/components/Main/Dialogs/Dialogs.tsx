@@ -4,13 +4,19 @@ import style from "./Dialogs.module.css"
 import {NavLink, Route, Routes} from "react-router-dom";
 import {Profile} from "../Profile/Profile";
 import {AppPropsType} from "../../../types";
-import {addMessageAC, ChatMessagesType, DialogsType, DispatchType, ForDialogsType} from "../../../redux/state";
+import {
+    AllActionType,
+    ChatMessagesType,
+    DialogsType,
+    ForDialogsType
+} from "../../../redux/state";
 import Chat from "./Chat";
+import {addMessageAC} from "../../../redux/chatReducer";
 
 type DialogsPropsType = {
     chatMessages: Array<ChatMessagesType>
     dialogsList: Array<DialogsType>
-    dispatch: DispatchType
+    dispatch: (action: AllActionType) => void
 }
 
 export function Dialogs(props: DialogsPropsType) {

@@ -4,10 +4,10 @@ import style from "./Profile.module.css"
 import {Myposts} from "../Mypsots/Myposts";
 import {ProfileInfo} from "./ProfileInfo";
 import {AppPropsType, PostPropsType} from "../../../types";
-import {ActionType,PostsListType} from "../../../redux/state";
+import {AllActionType, PostsListType} from "../../../redux/state";
 type PropsType ={
     postsList: PostsListType[]
-    dispatch:(action: ActionType) => void
+    dispatch:(action: AllActionType) => void
 }
 export function Profile(props: PropsType) {
     return (

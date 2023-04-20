@@ -6,12 +6,12 @@ import {Profile} from "./components/Main/Profile/Profile";
 import {Dialogs} from "./components/Main/Dialogs/Dialogs";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
-import {StateType} from "./redux/state";
+import {AllActionType, StateType} from "./redux/state";
 
 
 type AppPropsType ={
     state: StateType
-    dispatch:any
+    dispatch:(action: AllActionType) => void
 }
 
 function App(props: AppPropsType) {

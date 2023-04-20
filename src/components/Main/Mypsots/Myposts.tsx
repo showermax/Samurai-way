@@ -2,13 +2,12 @@ import React, {useRef} from "react";
 import style from "./Myposts.module.css"
 import {Post} from "./Post/Post";
 import {PostPropsType, PostsListType} from "../../../types";
-import {ActionType, ForProfileType} from "../../../redux/state";
+import {AllActionType, ForProfileType} from "../../../redux/state";
 import {addPostAC} from "../../../redux/profileReducer";
 
 type PropsType ={
     postsList: PostsListType[]
-
-    dispatch:(action: ActionType) => void
+    dispatch:(action: AllActionType) => void
 }
 export function Myposts(props: PropsType) {
     const textAreaTitle = useRef<HTMLTextAreaElement>(null)
@@ -16,7 +15,7 @@ export function Myposts(props: PropsType) {
     const addPostHandler = () =>{
         //props.addPost(textAreaTitle.current!.value, textAreaBody.current!.value)
         // props.dispatch({type: 'ADD-POST', payload: {title: textAreaTitle.current!.value, content: textAreaBody.current!.value}})
-        props.dispatch(addPostAC(textAreaTitle.current!.value,textAreaBody.current!.value))
+        // props.dispatch(addPostAC(textAreaTitle.current!.value,textAreaBody.current!.value))
     }
     return (
         <div className={style.wrapper}>

@@ -1,7 +1,8 @@
 // let rerenderEntireTree = () => {
 // }
 
-import {addPostAC, ProfileActionType, ProfileReducer} from "./profileReducer";
+import {ProfileActionType, ProfileReducer} from "./profileReducer";
+import {ChatActionType, ChatReducer} from "./chatReducer";
 
 export type DialogsType = {
     id: number
@@ -46,9 +47,9 @@ export type StoreType = {
     subscribe:(observer: () => void)=>void
     addPost: (title: string, content: string)=> void
     addMessage:(newmessage: string, id: number, author: boolean)=> void
-    dispatch:(action: ActionType) => void
+    dispatch:(action: AllActionType) => void
 }
-export type ActionType = ProfileActionType
+export type AllActionType = ProfileActionType | ChatActionType
 export const store:StoreType = {
     _subscriber() {
     },
@@ -122,8 +123,9 @@ export const store:StoreType = {
         this._state = {...this._state, forDialogs: {...this._state.forDialogs, chatMessages: newChatMessages}}
         this._subscriber()
     },
-    dispatch(action:ActionType) {
+    dispatch(action:AllActionType) {
         this._state.forProfile = ProfileReducer(this._state.forProfile, action)
+        this._state.forDialogs = ChatReducer(this._state.forDialogs, action)
         this._subscriber()
         // switch (action.type) {
         //     case 'ADD-MESSAGE': return this.addMessage(action.payload.title, action.payload.id, action.payload.author)
@@ -132,7 +134,32 @@ export const store:StoreType = {
     }
 }
 
-export const addMessageAC = (title:string, id: number, author:boolean) => ({type: 'ADD-MESSAGE', payload:{title: title, id: id, author: author}})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// export const addMessageAC = (title:string, id: number, author:boolean) => ({type: 'ADD-MESSAGE', payload:{title: title, id: id, author: author}})
 // export let state: StateType = {
 //     forDialogs: {
 //         chatMessages: [
