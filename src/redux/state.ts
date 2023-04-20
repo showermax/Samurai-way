@@ -1,7 +1,7 @@
 // let rerenderEntireTree = () => {
 // }
 
-import {addPostAC, ProfileReducer} from "./profileReducer";
+import {addPostAC, ProfileActionType, ProfileReducer} from "./profileReducer";
 
 export type DialogsType = {
     id: number
@@ -46,9 +46,9 @@ export type StoreType = {
     subscribe:(observer: () => void)=>void
     addPost: (title: string, content: string)=> void
     addMessage:(newmessage: string, id: number, author: boolean)=> void
-    dispatch:any
+    dispatch:(action: ActionType) => void
 }
-export type DispatchType = any
+export type ActionType = ProfileActionType
 export const store:StoreType = {
     _subscriber() {
     },
@@ -122,7 +122,7 @@ export const store:StoreType = {
         this._state = {...this._state, forDialogs: {...this._state.forDialogs, chatMessages: newChatMessages}}
         this._subscriber()
     },
-    dispatch(action:any) {
+    dispatch(action:ActionType) {
         this._state.forProfile = ProfileReducer(this._state.forProfile, action)
         this._subscriber()
         // switch (action.type) {
