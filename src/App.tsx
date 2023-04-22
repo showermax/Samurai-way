@@ -19,7 +19,7 @@ function App(props: AppPropsType) {
     const {state,dispatch} = props
     // const state = props.state
     // const dispatch = props.dispatch
-    console.log(props)
+
     return (
         <BrowserRouter>
             <div className="app-wrapper">
