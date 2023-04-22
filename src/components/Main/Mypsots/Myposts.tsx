@@ -7,15 +7,13 @@ import {addPostAC} from "../../../redux/profileReducer";
 
 type PropsType ={
     postsList: PostsListType[]
-    dispatch:(action: AllActionType) => void
+    addPost:(title: string, body:string) => void
 }
 export function Myposts(props: PropsType) {
     const textAreaTitle = useRef<HTMLTextAreaElement>(null)
     const textAreaBody = useRef<HTMLTextAreaElement>(null)
     const addPostHandler = () =>{
-        //props.addPost(textAreaTitle.current!.value, textAreaBody.current!.value)
-        // props.dispatch({type: 'ADD-POST', payload: {title: textAreaTitle.current!.value, content: textAreaBody.current!.value}})
-        props.dispatch(addPostAC(textAreaTitle.current!.value,textAreaBody.current!.value))
+        props.addPost(textAreaTitle.current!.value, textAreaBody.current!.value)
     }
     return (
         <div className={style.wrapper}>
