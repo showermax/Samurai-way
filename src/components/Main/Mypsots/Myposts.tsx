@@ -15,7 +15,7 @@ export function Myposts(props: PropsType) {
     const addPostHandler = () =>{
         //props.addPost(textAreaTitle.current!.value, textAreaBody.current!.value)
         // props.dispatch({type: 'ADD-POST', payload: {title: textAreaTitle.current!.value, content: textAreaBody.current!.value}})
-        // props.dispatch(addPostAC(textAreaTitle.current!.value,textAreaBody.current!.value))
+        props.dispatch(addPostAC(textAreaTitle.current!.value,textAreaBody.current!.value))
     }
     return (
         <div className={style.wrapper}>

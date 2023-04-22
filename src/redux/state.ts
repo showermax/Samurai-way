@@ -45,8 +45,8 @@ export type StoreType = {
     _state:StateType
     getState:()=>StateType
     subscribe:(observer: () => void)=>void
-    addPost: (title: string, content: string)=> void
-    addMessage:(newmessage: string, id: number, author: boolean)=> void
+    // addPost: (title: string, content: string)=> void
+    // addMessage:(newmessage: string, id: number, author: boolean)=> void
     dispatch:(action: AllActionType) => void
 }
 export type AllActionType = ProfileActionType | ChatActionType
@@ -111,18 +111,18 @@ export const store:StoreType = {
     subscribe(observer: () => void) {
         this._subscriber = observer
     },
-    addPost(title: string, content: string) {
-        this._state.forProfile.postsList.push({userId: 1, id: 3, title: title, body: content})
-        this._subscriber()
-    },
-    addMessage(newmessage: string, id: number, author: boolean) {
-        const newChatMessages = this._state.forDialogs.chatMessages.map(el => el.friend_id === id ? {
-            ...el,
-            chat: [...el.chat, {id: el.chat.length + 1, text: newmessage, author: author}]
-        } : el)
-        this._state = {...this._state, forDialogs: {...this._state.forDialogs, chatMessages: newChatMessages}}
-        this._subscriber()
-    },
+    // addPost(title: string, content: string) {
+    //     this._state.forProfile.postsList.push({userId: 1, id: 3, title: title, body: content})
+    //     this._subscriber()
+    // },
+    // addMessage(newmessage: string, id: number, author: boolean) {
+    //     const newChatMessages = this._state.forDialogs.chatMessages.map(el => el.friend_id === id ? {
+    //         ...el,
+    //         chat: [...el.chat, {id: el.chat.length + 1, text: newmessage, author: author}]
+    //     } : el)
+    //     this._state = {...this._state, forDialogs: {...this._state.forDialogs, chatMessages: newChatMessages}}
+    //     this._subscriber()
+    // },
     dispatch(action:AllActionType) {
         this._state.forProfile = ProfileReducer(this._state.forProfile, action)
         this._state.forDialogs = ChatReducer(this._state.forDialogs, action)
