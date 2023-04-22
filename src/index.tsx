@@ -5,12 +5,12 @@ import App from './App';
 import store from './redux/reduxStore'
 
 
-function rerenderEntireTree () {
+function rerenderEntireTree (state:any) {
     ReactDOM.render(
-        <App state={store} dispatch={store.dispatch.bind(store)} />,
+        <App state={state} dispatch={store.dispatch.bind(store)} />,
         document.getElementById('root')
     );
 }
-rerenderEntireTree()
+rerenderEntireTree(store.getState())
 
-store.subscribe(()=> rerenderEntireTree())
+store.subscribe(()=> rerenderEntireTree(store.getState()))
