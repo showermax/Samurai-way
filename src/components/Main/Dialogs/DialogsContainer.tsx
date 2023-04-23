@@ -8,10 +8,12 @@ import {
     AllActionType,
     ChatMessagesType,
     DialogsType,
-    ForDialogsType
+    ForDialogsType, StateType
 } from "../../../redux/state";
 import Chat from "./Chat";
 import {addMessageAC} from "../../../redux/chatReducer";
+import {connect} from "react-redux";
+import {Dialogs} from "./Dialogs";
 
 type DialogsPropsType = {
     chatMessages: Array<ChatMessagesType>
@@ -19,44 +21,19 @@ type DialogsPropsType = {
     dispatch: (action: AllActionType) => void
 }
 
-export function Dialogs(props: DialogsPropsType) {
-    const messageField = useRef<HTMLTextAreaElement>(null)
-    const sendButtonHandler = (id: number, author: boolean) => {
-        props.dispatch(addMessageAC(messageField.current!.value, id, author))
-        messageField.current!.value = ''
+const mapStateToProps = (state: StateType)=>{
+    return {
+        chatMessages: state.forDialogs.chatMessages,
+        dialogsList: state.forDialogs.dialogsList
     }
-    return (
-        <div className={style.wrapper}>
-            <div className={style.dialogs}>
-                {props.dialogsList.map(el => <div className={style.dialog_item}>
-                    <NavLink to={el.name}>{el.name}</NavLink>
-                </div>)}
-            </div>
-            <div className={style.messages}>
-                <div>
-                    <Routes>
-                        {props.chatMessages.map(el =>
-                            <Route path={el.friend} element={
-                                <div>
-                                    <Chat chat={el.chat} />
-                                    <button onClick={() => sendButtonHandler(el.friend_id, false)}> get the answer
-                                    </button>
-                                    <div className={style.sendForm}>
-                                        <textarea ref={messageField} className={style.textarea}
-                                                  placeholder={'Type...'}/>
-                                        <button onClick={() => sendButtonHandler(el.friend_id, true)}
-                                                className={style.button}>Send
-                                        </button>
-                                    </div>
-                                </div>
-                            }/>
-                        )}
-                    </Routes>
-
-                </div>
-            </div>
-        </div>
-    );
+}
+const mapDispatchToProps = (dispatch: (action: AllActionType) => void)=>{
+    return {
+         sendMessage: (message:string,id:number,author:boolean)=>{
+             dispatch(addMessageAC(message,id,author))
+         }
+    }
 }
 
 
+export const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(Dialogs)

@@ -16,13 +16,13 @@ import {addMessageAC} from "../../../redux/chatReducer";
 type DialogsPropsType = {
     chatMessages: Array<ChatMessagesType>
     dialogsList: Array<DialogsType>
-    dispatch: (action: AllActionType) => void
+    sendMessage: (message:string,id:number,author:boolean) => void
 }
 
 export function Dialogs(props: DialogsPropsType) {
     const messageField = useRef<HTMLTextAreaElement>(null)
     const sendButtonHandler = (id: number, author: boolean) => {
-        props.dispatch(addMessageAC(messageField.current!.value, id, author))
+        props.sendMessage(messageField.current!.value, id, author)
         messageField.current!.value = ''
     }
     return (
