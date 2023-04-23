@@ -6,15 +6,16 @@ import {ProfileInfo} from "./ProfileInfo";
 import {AppPropsType, PostPropsType} from "../../../types";
 import {AllActionType, PostsListType} from "../../../redux/state";
 import { MypostsContainer } from "../Mypsots/MypostsContainer";
-type PropsType ={
-    postsList: PostsListType[]
-    dispatch:(action: AllActionType) => void
-}
-export function Profile(props: PropsType) {
+// type PropsType ={
+//     postsList: PostsListType[]
+//     dispatch:(action: AllActionType) => void
+// }
+export function Profile() {
     return (
         <main className={style.main}>
             <ProfileInfo/>
-            <MypostsContainer postsList={props.postsList} dispatch={props.dispatch}/>
+            <MypostsContainer />
+            {/*<MypostsContainer postsList={props.postsList} dispatch={props.dispatch}/>*/}
         </main>
     );
 }

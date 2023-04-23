@@ -9,14 +9,14 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {AllActionType, ForDialogsType, ForProfileType, StateType} from "./redux/state";
 
 
-type AppPropsType = {
-    state: any
-    dispatch: (action: AllActionType) => void
-}
+// type AppPropsType = {
+//     state: any
+//     dispatch: (action: AllActionType) => void
+// }
 
-function App(props: AppPropsType) {
+function App() {
     // const state=props.state.getState()
-    const {state,dispatch} = props
+    // const {state,dispatch} = props
     // const state = props.state
     // const dispatch = props.dispatch
 
@@ -28,10 +28,13 @@ function App(props: AppPropsType) {
                 <div className='main'>
                     <Routes>
                         <Route path='/profile'
-                               element={<Profile postsList={state.forProfile.postsList} dispatch={dispatch}/>}/>
-                        <Route path='/dialogs/*' element={<Dialogs chatMessages={state.forDialogs.chatMessages}
-                                                                   dialogsList={state.forDialogs.dialogsList}
-                                                                   dispatch={dispatch}/>}/>
+                               element={<Profile />} />
+                        {/*<Route path='/dialogs/*' element={<Dialogs />}/>*/}
+                        {/*<Route path='/profile'*/}
+                        {/*       element={<Profile postsList={state.forProfile.postsList} dispatch={dispatch}/>}/>*/}
+                        {/*<Route path='/dialogs/*' element={<Dialogs chatMessages={state.forDialogs.chatMessages}*/}
+                        {/*                                           dialogsList={state.forDialogs.dialogsList}*/}
+                        {/*                                           dispatch={dispatch}/>}/>*/}
                         {/*<Route path='/news' component={Profile} />*/}
                         {/*<Route path='/music' component={Dialogs} />*/}
                         {/*<Route path='/settings' component={Dialogs} />*/}

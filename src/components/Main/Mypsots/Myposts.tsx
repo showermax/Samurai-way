@@ -24,6 +24,7 @@ export function Myposts(props: PropsType) {
                 <textarea ref={textAreaBody} className={style.textarea} placeholder={'type the post'}> </textarea>
             </div>
             <button onClick={addPostHandler}> Public the post </button>
+
             <Post postsList={props.postsList}/>
         </div>
     );

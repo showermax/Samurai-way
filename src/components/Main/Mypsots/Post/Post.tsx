@@ -5,6 +5,7 @@ import {PostPropsType, PostsListType} from "../../../../types";
 import {ForProfileType} from "../../../../redux/state";
 
 export function Post(props: ForProfileType) {
+
     return (
         <>
             {props.postsList.map(el => {
