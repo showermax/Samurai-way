@@ -8,6 +8,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 import {AllActionType, ForDialogsType, ForProfileType, StateType} from "./redux/state";
 import {DialogsContainer} from "./components/Main/Dialogs/DialogsContainer";
+import {UsersContainer} from "./components/Main/Users/UsersContainer";
 
 
 // type AppPropsType = {
@@ -31,6 +32,7 @@ function App() {
                         <Route path='/profile'
                                element={<Profile />} />
                         <Route path='/dialogs/*' element={<DialogsContainer />}/>
+                        <Route path='/users/*' element={<UsersContainer />}/>
                         {/*<Route path='/profile'*/}
                         {/*       element={<Profile postsList={state.forProfile.postsList} dispatch={dispatch}/>}/>*/}
                         {/*<Route path='/dialogs/*' element={<Dialogs chatMessages={state.forDialogs.chatMessages}*/}

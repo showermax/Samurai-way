@@ -6,7 +6,7 @@ import store from './redux/reduxStore'
 import {Provider} from "react-redux";
 
 
-function rerenderEntireTree(state: any) {
+
     ReactDOM.render(
         <Provider store={store}>
             <App />
@@ -14,8 +14,19 @@ function rerenderEntireTree(state: any) {
         </Provider>,
         document.getElementById('root')
     );
-}
 
-rerenderEntireTree(store.getState())
 
-store.subscribe(() => rerenderEntireTree(store.getState()))
+
+// function rerenderEntireTree(state: any) {
+//     ReactDOM.render(
+//         <Provider store={store}>
+//             <App />
+//             {/*<App state={state} dispatch={store.dispatch.bind(store)}/>*/}
+//         </Provider>,
+//         document.getElementById('root')
+//     );
+// }
+//
+// rerenderEntireTree(store.getState())
+//
+// store.subscribe(() => rerenderEntireTree(store.getState()))
