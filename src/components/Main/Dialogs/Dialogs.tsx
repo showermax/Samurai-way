@@ -38,7 +38,7 @@ export function Dialogs(props: DialogsPropsType) {
                     <Routes>
                         {props.chatMessages.map(el =>
                             <Route path={el.friend} element={
-                                <div>
+                                <div key={el.friend_id}>
                                     <Chat chat={el.chat} />
                                     <button onClick={() => sendButtonHandler(el.friend_id, false)}> get the answer
                                     </button>

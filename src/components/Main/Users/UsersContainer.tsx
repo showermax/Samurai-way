@@ -5,8 +5,9 @@ import {addUserAC, UsersStateType} from "../../../redux/usersReducer";
 import {ReduxStateType} from "../../../redux/reduxStore";
 
 const mapStateToProps = (state: ReduxStateType) => {
+    console.log(state)
     return {
-        userList: state.users.users
+        userList: state.forUsers.users
     }
 }
 const mapDispatchToProps = (dispatch: (action:any)=>void) => {

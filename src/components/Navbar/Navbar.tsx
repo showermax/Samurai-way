@@ -13,7 +13,7 @@ export function Navbar() {
                 <NavLink to='/dialogs' >Messages</NavLink>
             </div>
             <div className={style.item}>
-                <NavLink to='/news' > News</NavLink>
+                <NavLink to='/users' >Users</NavLink>
             </div>
             <div className={style.item}>
                 <NavLink to='/music' > Music</NavLink>

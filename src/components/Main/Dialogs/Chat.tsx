@@ -9,7 +9,7 @@ export  const Chat = (props: PropsType) => {
 
     return (
         <div>
-            {props.chat.map(el2 => <div className={el2.author ? style.messages1 : style.messages2}>{el2.text}</div>)}
+            {props.chat.map(el2 => <div key={el2.id} className={el2.author ? style.messages1 : style.messages2}>{el2.text}</div>)}
         </div>
     );
 };

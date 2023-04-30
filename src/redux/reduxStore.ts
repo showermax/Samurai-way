@@ -6,7 +6,7 @@ import {UsersReducer} from "./usersReducer";
 let reducers = combineReducers({
     forDialogs: ChatReducer,
     forProfile: ProfileReducer,
-    users: UsersReducer
+    forUsers: UsersReducer
 })
 
 
