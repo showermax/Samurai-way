@@ -5,18 +5,19 @@ export type UsersStateType = {
     friends: Array<number>
 }
 export type UserType = {
-    id:number,
-    name:string,
-    photo:{small: string | null, large: string | null },
-    status:string | null,
+    id:number
+    name:string
+    photos:{small: string | null, large: string | null }
+    status:string | null
     followed: boolean
+    uniqueUrlName: string | null
 }
 const InitialState:UsersStateType = {
     users: [
-        {id: 1, name: 'Danik', photo: {small: null, large: null}, status: null, followed: false},
-        {id: 2, name: 'Kirill', photo: {small: null, large: null}, status: null, followed: false},
-        {id: 3, name: 'Ivan', photo: {small: null, large: null}, status: null, followed: false},
-        {id: 4, name: 'Denis', photo: {small: null, large: null}, status: null, followed: false}
+        {id: 1, name: 'Danik', photos: {small: null, large: null}, status: null, followed: false,uniqueUrlName:null},
+        {id: 2, name: 'Kirill', photos: {small: null, large: null}, status: null, followed: false,uniqueUrlName:null},
+        {id: 3, name: 'Ivan', photos: {small: null, large: null}, status: null, followed: false,uniqueUrlName:null},
+        {id: 4, name: 'Denis', photos: {small: null, large: null}, status: null, followed: false,uniqueUrlName:null}
     ],
     friends: [1,2,3]
 }
@@ -29,21 +30,30 @@ export const UsersReducer = (state:UsersStateType = InitialState, action: Action
         case 'FOLLOW-USER': {
             return state
         }
+        case 'GET-USERS': {
+            return {users: action.payload.users, friends:[]}
+        }
         default:
             return state
     }
 };
-type ActionType = ReturnType<typeof addUserAC> | ReturnType<typeof followUserAC>
+type ActionType = ReturnType<typeof addUserAC> | ReturnType<typeof followUserAC> | ReturnType<typeof getUsersAC>
 export const addUserAC = ()=>{
     return {
         type: 'ADD-USER',
-        payload: {newUser:{id: 5, name: 'Demian', photo: {small: null, large: null}, status: null, followed: false} }
+        payload: {newUser:{id: 5, name: 'Demian', photos: {small: null, large: null}, status: null, followed: false,uniqueUrlName:null} }
     } as const
 }
 
-const followUserAC = ()=>{
+export const followUserAC = ()=>{
     return {
         type: 'FOLLOW-USER',
         payload: {}
+    } as const
+}
+export const getUsersAC = (users: UserType[])=>{
+    return {
+        type: 'GET-USERS',
+        payload: {users}
     } as const
 }
