@@ -55,7 +55,7 @@ export class Users extends React.Component<UsersPropsType> {
                     }
                 )
                 }
-                <div style={{display: 'flex'}}>{arr.map(el => <div key={el} onClick={() => this.changePage(el)}>{el}</div>)}</div>
+                <div style={{display: 'flex'}}>{arr.map(el => <div key={el} onClick={() => this.changePage(el)}>{`- ${el} `}</div>)}</div>
                 <div>Users per page: {this.props.count}</div>
 
             </div>
