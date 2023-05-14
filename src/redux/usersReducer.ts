@@ -5,6 +5,7 @@ export type UsersStateType = {
     friends: Array<number>
     count: number
     page: number
+    totalCount: number
 }
 export type UserType = {
     id:number
@@ -21,8 +22,9 @@ const InitialState:UsersStateType = {
         {id: 3, name: 'Ivan', photos: {small: null, large: null}, status: null, followed: false,uniqueUrlName:null},
         {id: 4, name: 'Denis', photos: {small: null, large: null}, status: null, followed: false,uniqueUrlName:null}
     ],
-    count: 5,
+    count: 10,
     page:1,
+    totalCount:27,
     friends: [1,2,3]
 }
 export const UsersReducer = (state:UsersStateType = InitialState, action: ActionType): UsersStateType  => {
@@ -40,11 +42,15 @@ export const UsersReducer = (state:UsersStateType = InitialState, action: Action
         case 'SET-PAGE': {
             return {...state, page: action.payload.page}
         }
+        case 'SET-USERS-COUNT': {
+            return {...state, totalCount: action.payload.totalCount}
+        }
         default:
             return state
     }
 };
-type ActionType = ReturnType<typeof addUserAC> | ReturnType<typeof followUserAC> | ReturnType<typeof getUsersAC> | ReturnType<typeof setPageAC>
+type ActionType = ReturnType<typeof addUserAC> | ReturnType<typeof followUserAC>
+    | ReturnType<typeof getUsersAC> | ReturnType<typeof setPageAC> | ReturnType<typeof setUsersCountAC>
 export const addUserAC = ()=>{
     return {
         type: 'ADD-USER',
@@ -69,5 +75,11 @@ export const setPageAC = (page: number)=>{
     return {
         type: 'SET-PAGE',
         payload: {page}
+    } as const
+}
+export const setUsersCountAC = (totalCount: number)=>{
+    return {
+        type: 'SET-USERS-COUNT',
+        payload: {totalCount}
     } as const
 }
