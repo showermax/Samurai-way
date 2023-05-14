@@ -1,8 +1,10 @@
 import React from 'react';
 
 export type UsersStateType = {
-    users: Array<UserType>,
+    users: Array<UserType>
     friends: Array<number>
+    count: number
+    page: number
 }
 export type UserType = {
     id:number
@@ -19,6 +21,8 @@ const InitialState:UsersStateType = {
         {id: 3, name: 'Ivan', photos: {small: null, large: null}, status: null, followed: false,uniqueUrlName:null},
         {id: 4, name: 'Denis', photos: {small: null, large: null}, status: null, followed: false,uniqueUrlName:null}
     ],
+    count: 5,
+    page:1,
     friends: [1,2,3]
 }
 export const UsersReducer = (state:UsersStateType = InitialState, action: ActionType): UsersStateType  => {
@@ -31,13 +35,16 @@ export const UsersReducer = (state:UsersStateType = InitialState, action: Action
             return state
         }
         case 'GET-USERS': {
-            return {users: action.payload.users, friends:[]}
+            return {...state, users: action.payload.users}
+        }
+        case 'SET-PAGE': {
+            return {...state, page: action.payload.page}
         }
         default:
             return state
     }
 };
-type ActionType = ReturnType<typeof addUserAC> | ReturnType<typeof followUserAC> | ReturnType<typeof getUsersAC>
+type ActionType = ReturnType<typeof addUserAC> | ReturnType<typeof followUserAC> | ReturnType<typeof getUsersAC> | ReturnType<typeof setPageAC>
 export const addUserAC = ()=>{
     return {
         type: 'ADD-USER',
@@ -55,5 +62,12 @@ export const getUsersAC = (users: UserType[])=>{
     return {
         type: 'GET-USERS',
         payload: {users}
+    } as const
+}
+
+export const setPageAC = (page: number)=>{
+    return {
+        type: 'SET-PAGE',
+        payload: {page}
     } as const
 }
