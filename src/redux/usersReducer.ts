@@ -6,6 +6,7 @@ export type UsersStateType = {
     count: number
     page: number
     totalCount: number
+    isLoading:boolean
 }
 export type UserType = {
     id:number
@@ -25,7 +26,8 @@ const InitialState:UsersStateType = {
     count: 10,
     page:1,
     totalCount:27,
-    friends: [1,2,3]
+    friends: [1,2,3],
+    isLoading:true
 }
 export const UsersReducer = (state:UsersStateType = InitialState, action: ActionType): UsersStateType  => {
     switch (action.type) {
@@ -45,12 +47,16 @@ export const UsersReducer = (state:UsersStateType = InitialState, action: Action
         case 'SET-USERS-COUNT': {
             return {...state, totalCount: action.payload.totalCount}
         }
+        case 'IS-LOADING': {
+            return {...state, isLoading: action.payload.isLoading}
+        }
         default:
             return state
     }
 };
 type ActionType = ReturnType<typeof addUserAC> | ReturnType<typeof followUserAC>
-    | ReturnType<typeof getUsersAC> | ReturnType<typeof setPageAC> | ReturnType<typeof setUsersCountAC>
+    | ReturnType<typeof getUsersAC> | ReturnType<typeof setPageAC>
+    | ReturnType<typeof setUsersCountAC> | ReturnType<typeof setIsLoadingAC>
 export const addUserAC = ()=>{
     return {
         type: 'ADD-USER',
@@ -81,5 +87,11 @@ export const setUsersCountAC = (totalCount: number)=>{
     return {
         type: 'SET-USERS-COUNT',
         payload: {totalCount}
+    } as const
+}
+export const setIsLoadingAC = (isLoading: boolean)=>{
+    return {
+        type: 'IS-LOADING',
+        payload:{isLoading}
     } as const
 }
