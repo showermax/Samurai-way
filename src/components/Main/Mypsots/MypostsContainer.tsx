@@ -1,8 +1,5 @@
 import React, {useRef} from "react";
-import style from "./Myposts.module.css"
-import {Post} from "./Post/Post";
-import {PostPropsType, PostsListType} from "../../../types";
-import {AllActionType, ForProfileType, StateType} from "../../../redux/state";
+import {AllActionType, StateType} from "../../../redux/state";
 import {addPostAC} from "../../../redux/profileReducer";
 import { Myposts } from "./Myposts";
 import {connect} from "react-redux";

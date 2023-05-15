@@ -9,6 +9,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {AllActionType, ForDialogsType, ForProfileType, StateType} from "./redux/state";
 import {DialogsContainer} from "./components/Main/Dialogs/DialogsContainer";
 import {UsersContainer} from "./components/Main/Users/UsersContainer";
+import {ProfileContainer} from "./components/Main/Profile/ProfileContainer";
 
 
 // type AppPropsType = {
@@ -29,8 +30,8 @@ function App() {
                 <Navbar/>
                 <div className='main'>
                     <Routes>
-                        <Route path='/profile'
-                               element={<Profile />} />
+                        <Route path='/profile/:userId'
+                               element={<ProfileContainer />} />
                         <Route path='/dialogs/*' element={<DialogsContainer />}/>
                         <Route path='/users/*' element={<UsersContainer />}/>
                         {/*<Route path='/profile'*/}

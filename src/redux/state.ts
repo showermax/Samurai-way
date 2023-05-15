@@ -34,6 +34,19 @@ export type ForDialogsType = {
 
 export type ForProfileType = {
     postsList: PostsListType[]
+    profileInfo: ProfileInfoType
+}
+export type ProfileInfoType = {
+    aboutMe: string
+    contacts: any
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
+    photos: {
+        small: string
+        large: string
+    }
 }
 
 export type StateType = {
@@ -41,13 +54,13 @@ export type StateType = {
     forProfile: ForProfileType
 }
 export type StoreType = {
-    _subscriber:()=> void
-    _state:StateType
-    getState:()=>StateType
-    subscribe:(observer: () => void)=>void
+    _subscriber: () => void
+    _state: StateType
+    getState: () => StateType
+    subscribe: (observer: () => void) => void
     // addPost: (title: string, content: string)=> void
     // addMessage:(newmessage: string, id: number, author: boolean)=> void
-    dispatch:(action: AllActionType) => void
+    dispatch: (action: AllActionType) => void
 }
 export type AllActionType = ProfileActionType | ChatActionType
 // export const store:StoreType = {
@@ -133,30 +146,6 @@ export type AllActionType = ProfileActionType | ChatActionType
 //         // }
 //     }
 // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // export const addMessageAC = (title:string, id: number, author:boolean) => ({type: 'ADD-MESSAGE', payload:{title: title, id: id, author: author}})

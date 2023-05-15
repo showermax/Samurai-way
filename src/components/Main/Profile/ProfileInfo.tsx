@@ -1,8 +1,11 @@
 import React from "react";
 import style from "./Profile.module.css"
 import avatar from "../../../img/ava.jpg"
-
-export function ProfileInfo() {
+import {ProfileInfoType} from "../../../redux/state";
+type PropsType = {
+    profileInfo: ProfileInfoType
+}
+export function ProfileInfo(props:PropsType) {
     return (
         <div>
             <div className={style.header}>
@@ -17,6 +20,8 @@ export function ProfileInfo() {
                     City: Minsk<br/>
                     Hobby: radio modelling</p>
             </div>
+                <div>{props.profileInfo.fullName}</div>
+                <div><img src={props.profileInfo.photos.small} className={style.avatar}/> </div>
             </div>
         </div>
     );
