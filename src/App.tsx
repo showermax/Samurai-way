@@ -10,6 +10,7 @@ import {AllActionType, ForDialogsType, ForProfileType, StateType} from "./redux/
 import {DialogsContainer} from "./components/Main/Dialogs/DialogsContainer";
 import {UsersContainer} from "./components/Main/Users/UsersContainer";
 import {ProfileContainer} from "./components/Main/Profile/ProfileContainer";
+import {HeaderContainer} from "./components/Header/HeaderContainer";
 
 
 // type AppPropsType = {
@@ -26,7 +27,7 @@ function App() {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
-                <Header/>
+                <HeaderContainer />
                 <Navbar/>
                 <div className='main'>
                     <Routes>

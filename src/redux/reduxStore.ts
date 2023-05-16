@@ -2,11 +2,13 @@ import {combineReducers, createStore} from "redux";
 import {ProfileReducer} from "./profileReducer";
 import {ChatReducer} from "./chatReducer";
 import {UsersReducer} from "./usersReducer";
+import {LoginReducer} from "./loginReducer";
 
 let reducers = combineReducers({
     forDialogs: ChatReducer,
     forProfile: ProfileReducer,
-    forUsers: UsersReducer
+    forUsers: UsersReducer,
+    loginData: LoginReducer
 })
 
 
