@@ -4,7 +4,6 @@ import logo from "../../logo192.png"
 import {AuthType} from "../../redux/loginReducer";
 
 export function Header(props:any) {
-    console.log(props)
     return (
         <header className={style.header}>
             <img src={logo}/>
