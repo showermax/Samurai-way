@@ -125,7 +125,7 @@ export type AllActionType = ProfileActionType | ChatActionType
 //         this._subscriber = observer
 //     },
 //     // addPost(title: string, content: string) {
-//     //     this._state.forProfile.postsList.push({userId: 1, id: 3, title: title, body: content})
+//     //     this._state.forProfile.postsList.push({userId: 1, id: 3, tit  le: title, body: content})
 //     //     this._subscriber()
 //     // },
 //     // addMessage(newmessage: string, id: number, author: boolean) {
