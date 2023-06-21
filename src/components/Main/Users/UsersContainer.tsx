@@ -13,6 +13,7 @@ import s from './Users.module.css'
 import {ReduxStateType} from "../../../redux/reduxStore";
 import React from "react";
 import axios from "axios";
+import {Loader} from "../../Common/Loader";
 
 type UsersClassPropsType = {
     userList: UserType[],
@@ -50,7 +51,7 @@ class UsersClass extends React.Component<UsersClassPropsType> {
     }
 
     render() {return <>
-        {this.props.isLoading ? <div className={s.loader}/> :
+        {this.props.isLoading ? <div className={s.loading}><Loader/></div> :
         <Users userList={this.props.userList}
                                count={this.props.count}
                                page={this.props.page}
