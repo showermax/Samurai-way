@@ -60,7 +60,6 @@ class UsersClass extends React.Component<UsersClassPropsType> {
     }
 };
 const mapStateToProps = (state: ReduxStateType) => {
-    console.log(state)
     return {
         userList: state.forUsers.users,
         count: state.forUsers.count,

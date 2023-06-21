@@ -32,7 +32,6 @@ const InitialState:UsersStateType = {
 export const UsersReducer = (state:UsersStateType = InitialState, action: ActionType): UsersStateType  => {
     switch (action.type) {
         case 'ADD-USER': {
-            console.log(state.users)
             return {...state, users: [...state.users, action.payload.newUser]}
         }
         case 'FOLLOW-USER': {
