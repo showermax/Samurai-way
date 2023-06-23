@@ -1,6 +1,6 @@
 .header {
     grid-area: header;
-    background: #25272A;
+    background: #000;
     mix-blend-mode: normal;
     opacity: 0.75;
     box-shadow: 0px 2px 25px black;

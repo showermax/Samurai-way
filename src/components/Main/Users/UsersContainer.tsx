@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import {Users} from "./Users";
 import {
-    addUserAC,
+    addUserAC, followUserAC,
     getUsersAC,
     setIsLoadingAC,
     setPageAC,
@@ -49,13 +49,22 @@ class UsersClass extends React.Component<UsersClassPropsType> {
             this.props.getUsers(resp.data.items)
         })
     }
+    follow = (id:number) => {
+        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {}, {withCredentials:true}).then(resp => {
+            this.props.setIsLoading(false)
+            this.props.getUsers(resp.data.items)
+        })
+    }
 
     render() {return <>
         {this.props.isLoading ? <div className={s.loading}><Loader/></div> :
         <Users userList={this.props.userList}
                                count={this.props.count}
                                page={this.props.page}
-                               totalCount={this.props.totalCount} changePage={this.changePage}/>}
+                               totalCount={this.props.totalCount}
+               changePage={this.changePage}
+               follow={this.follow}
+        />}
     </>
     }
 };
@@ -84,6 +93,9 @@ const mapDispatchToProps = (dispatch: (action:any)=>void) => {
         },
         setIsLoading: (isLoading: boolean) =>{
             dispatch(setIsLoadingAC(isLoading))
+        },
+        follow: (id:number) => {
+            dispatch(followUserAC(id))
         }
     }
 }

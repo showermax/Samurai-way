@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import styles from './App.module.css';
 import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Main/Profile/Profile";
@@ -26,10 +26,10 @@ function App() {
 
     return (
         <BrowserRouter>
-            <div className="app-wrapper">
+            <div className={styles.appWrapper}>
                 <HeaderContainer />
                 <Navbar/>
-                <div className='main'>
+                <div className={styles.main}>
                     <Routes>
                         <Route path='/profile/:userId'
                                element={<ProfileContainer />} />

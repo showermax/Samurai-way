@@ -3,6 +3,8 @@ import {UserType} from "../../../redux/usersReducer";
 import axios from "axios";
 import {NavLink} from "react-router-dom";
 import s from './Users.module.css';
+import favouriteRed from './favorite-red.png'
+import favouriteEmpty from './favorite-empty.png'
 
 
 type UsersPropsType = {
@@ -11,44 +13,42 @@ type UsersPropsType = {
     page: number
     totalCount: number
     changePage: (page: number) => void
+    follow: (id: number) => void
 }
 
-export const Users: React.FC<UsersPropsType> = ({totalCount,count, userList,changePage}) => {
-        let arr = []
-        let k=totalCount/100
-        let numberOfPages = Math.ceil(k /count)
-        for (let i = 1; i <= numberOfPages; i++) {
-            arr.push(i)
-        }
-        return (
-            <div>
-                <h2>Users Page</h2>
-                <div className={s.grid}>{userList.map(el => {
-                        return (
-                            // className={el.photos.small ? s.item__photo : s.item}
-                            <div key={el.id}  style={el.photos.small ? {
-                                width: '200px',
-                                height: '300px',
-                                background: `linear-gradient(180deg, rgba(41, 47, 63, 0.3) 0%, rgba(41, 47, 63, 0.9) 100%), url(${el.photos.large}) 0 0 no-repeat`,
-                                boxShadow: '20px 24px 34px rgba(0, 0, 0, 0.45)',
-                                borderRadius: '30px'
-                            } : {
-
-                                }}>
-                                <NavLink to={'/profile/' + el.id}>
-                                    {/*<img src={el.photos.large ? el.photos.large : ''} alt=""/>*/}
-                                    <div>{el.name}</div>
-                                </NavLink>
-
-                                <div>{el.followed}</div>
-                            </div>)
-                    }
-                )
-                }</div>
-                <div style={{display: 'flex'}}>{arr.map(el => <div key={el} onClick={() => changePage(el)}>{`- ${el} `}</div>)}</div>
-                <div>Users per page: {count}</div>
-            </div>
-        )
+export const Users: React.FC<UsersPropsType> = ({totalCount, count, userList, changePage, page, follow}) => {
+    let arr = []
+    let k = totalCount / 100
+    let numberOfPages = Math.ceil(k / count)
+    for (let i = 1; i <= numberOfPages; i++) {
+        arr.push(i)
     }
+    return (
+        <div>
+            <div className={s.grid}>{userList.map(el => {
+                    let styleNumber = Math.floor(Math.random() * 3)
+                const followHandler = () => {
+                        follow(el.id)
+                }
+                    return (
+                        <div key={el.id} className={styleNumber === 0 ? s.item : styleNumber === 1 ? s.item1 : s.item2}>
+
+                            <NavLink to={'/profile/' + el.id}>
+                                <img className={s.img} src={el.photos.large ? el.photos.large : ''} alt=""/>
+                                <div className={s.userName}>{el.name}</div>
+                            </NavLink>
+                            <div className={s.followed} onClick = {followHandler}><img src = {el.followed ? favouriteRed : favouriteEmpty}/></div>
+                        </div>)
+                }
+            )
+            }</div>
+            <div className={s.pagination}>
+                {arr.map(el =>
+                    <div key={el} className={el!==page ? s.paginationItem:`${s.paginationItem} ${s.activePage}`} onClick={() => changePage(el)}>{el}</div>)}
+            </div>
+            <div>Users per page: {count}</div>
+        </div>
+    )
+}
 
 

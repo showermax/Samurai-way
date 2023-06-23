@@ -35,7 +35,7 @@ export const UsersReducer = (state:UsersStateType = InitialState, action: Action
             return {...state, users: [...state.users, action.payload.newUser]}
         }
         case 'FOLLOW-USER': {
-            return state
+            return {...state, users: state.users.map(el => el.id === action.payload.id ? {...el, followed: !el.followed} : el)}
         }
         case 'GET-USERS': {
             return {...state, users: action.payload.users}
@@ -63,10 +63,10 @@ export const addUserAC = ()=>{
     } as const
 }
 
-export const followUserAC = ()=>{
+export const followUserAC = (id:number)=>{
     return {
         type: 'FOLLOW-USER',
-        payload: {}
+        payload: {id}
     } as const
 }
 export const getUsersAC = (users: UserType[])=>{
