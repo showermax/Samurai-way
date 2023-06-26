@@ -14,9 +14,10 @@ type UsersPropsType = {
     totalCount: number
     changePage: (page: number) => void
     follow: (id: number) => void
+    unfollow: (id: number) => void
 }
 
-export const Users: React.FC<UsersPropsType> = ({totalCount, count, userList, changePage, page, follow}) => {
+export const Users: React.FC<UsersPropsType> = ({totalCount, count, userList, changePage, page, follow, unfollow}) => {
     let arr = []
     let k = totalCount / 100
     let numberOfPages = Math.ceil(k / count)
@@ -26,12 +27,12 @@ export const Users: React.FC<UsersPropsType> = ({totalCount, count, userList, ch
     return (
         <div>
             <div className={s.grid}>{userList.map(el => {
-                    let styleNumber = Math.floor(Math.random() * 3)
+                    let styleNumber = Math.floor(Math.random() * 2)
                 const followHandler = () => {
-                        follow(el.id)
+                    el.followed ?  unfollow(el.id) : follow(el.id)
                 }
                     return (
-                        <div key={el.id} className={styleNumber === 0 ? s.item : styleNumber === 1 ? s.item1 : s.item2}>
+                        <div key={el.id} className={el.followed ? s.item : styleNumber === 1 ? s.item1 : s.item2}>
 
                             <NavLink to={'/profile/' + el.id}>
                                 <img className={s.img} src={el.photos.large ? el.photos.large : ''} alt=""/>

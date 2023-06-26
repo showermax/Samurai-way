@@ -23,6 +23,7 @@ type UsersClassPropsType = {
     isLoading:boolean
     addUser: () => void
     getUsers: (users: UserType[]) => void
+    following: (id: number) => void
     setPage: (page: number) => void
     setUsersCount: (c: number) => void
     setIsLoading: (i: boolean) => void
@@ -33,11 +34,12 @@ class UsersClass extends React.Component<UsersClassPropsType> {
     // }
     componentDidMount() {
         this.props.setIsLoading(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.page}&count=${this.props.count}`).then(resp => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.page}&count=${this.props.count}`, {
+            withCredentials:true
+        }).then(resp => {
             this.props.setIsLoading(false)
             this.props.getUsers(resp.data.items)
             this.props.setUsersCount(resp.data.totalCount)
-            console.log(resp.data.totalCount)
         })
     }
 
@@ -52,7 +54,14 @@ class UsersClass extends React.Component<UsersClassPropsType> {
     follow = (id:number) => {
         axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {}, {withCredentials:true}).then(resp => {
             this.props.setIsLoading(false)
-            this.props.getUsers(resp.data.items)
+            if (resp.data.resultCode === 0) this.props.following(id)
+        })
+    }
+    unfollow = (id:number) => {
+        // this.props.setIsLoading(true)
+        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`,  {withCredentials:true}).then(resp => {
+            this.props.setIsLoading(false)
+            if (resp.data.resultCode === 0) this.props.following(id)
         })
     }
 
@@ -64,6 +73,7 @@ class UsersClass extends React.Component<UsersClassPropsType> {
                                totalCount={this.props.totalCount}
                changePage={this.changePage}
                follow={this.follow}
+               unfollow = {this.unfollow}
         />}
     </>
     }
@@ -94,7 +104,7 @@ const mapDispatchToProps = (dispatch: (action:any)=>void) => {
         setIsLoading: (isLoading: boolean) =>{
             dispatch(setIsLoadingAC(isLoading))
         },
-        follow: (id:number) => {
+        following: (id:number) => {
             dispatch(followUserAC(id))
         }
     }
