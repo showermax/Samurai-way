@@ -15,9 +15,10 @@ type UsersPropsType = {
     changePage: (page: number) => void
     follow: (id: number) => void
     unfollow: (id: number) => void
+    isFollowingArr: Array<number>
 }
 
-export const Users: React.FC<UsersPropsType> = ({totalCount, count, userList, changePage, page, follow, unfollow}) => {
+export const Users: React.FC<UsersPropsType> = ({totalCount, count, userList, changePage, page, follow, unfollow, isFollowingArr}) => {
     let arr = []
     let k = totalCount / 100
     let numberOfPages = Math.ceil(k / count)
@@ -38,7 +39,7 @@ export const Users: React.FC<UsersPropsType> = ({totalCount, count, userList, ch
                                 <img className={s.img} src={el.photos.large ? el.photos.large : ''} alt=""/>
                                 <div className={s.userName}>{el.name}</div>
                             </NavLink>
-                            <div className={s.followed} onClick = {followHandler}><img src = {el.followed ? favouriteRed : favouriteEmpty}/></div>
+                            <div className={`${s.followed} ${isFollowingArr.includes(el.id) ? s.disabled :null}`} onClick={followHandler}><img src = {el.followed ? favouriteRed : favouriteEmpty}/></div>
                         </div>)
                 }
             )
