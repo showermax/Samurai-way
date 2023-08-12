@@ -2,7 +2,7 @@ import {connect} from "react-redux";
 import {Users} from "./Users";
 import {
     addUserAC, followUserAC,
-    getUsersAC, setIsFollowingAC,
+    getUsersAC, getUsersTC, setIsFollowingAC,
     setIsLoadingAC,
     setPageAC,
     setUsersCountAC,
@@ -24,7 +24,8 @@ type UsersClassPropsType = {
     isLoading:boolean
     isFollowingArr:Array<number>
     addUser: () => void
-    getUsers: (users: UserType[]) => void
+    // getUsers: (users: UserType[]) => void
+    getUsersTC: (page:number, count: number) => void
     following: (id: number) => void
     setPage: (page: number) => void
     setUsersCount: (c: number) => void
@@ -36,14 +37,15 @@ class UsersClass extends React.Component<UsersClassPropsType> {
     //     super(props)
     // }
     componentDidMount() {
-        this.props.setIsLoading(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.page}&count=${this.props.count}`, {
-            withCredentials:true
-        }).then(resp => {
-            this.props.setIsLoading(false)
-            this.props.getUsers(resp.data.items)
-            this.props.setUsersCount(resp.data.totalCount)
-        })
+        this.props.getUsersTC(this.props.page, this.props.count)
+        // this.props.setIsLoading(true)
+        // axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.page}&count=${this.props.count}`, {
+        //     withCredentials:true
+        // }).then(resp => {
+        //     this.props.setIsLoading(false)
+        //     this.props.getUsers(resp.data.items)
+        //     this.props.setUsersCount(resp.data.totalCount)
+        // })
         // usersApi.getUsers(this.props.page,this.props.count).then(resp =>{
         //         this.props.setIsLoading(false)
         //         this.props.getUsers(resp.items)
@@ -56,7 +58,7 @@ class UsersClass extends React.Component<UsersClassPropsType> {
         this.props.setIsLoading(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.count}`).then(resp => {
             this.props.setIsLoading(false)
-            this.props.getUsers(resp.data.items)
+            // this.props.getUsers(resp.data.items)
         })
     }
     follow = (id:number) => {
@@ -103,8 +105,11 @@ const mapDispatchToProps = (dispatch: (action:any)=>void) => {
         addUser: () => {
             dispatch(addUserAC())
         },
-        getUsers: (users: UserType[]) =>{
-            dispatch(getUsersAC(users))
+        // getUsers: (users: UserType[]) =>{
+        //     dispatch(getUsersAC(users))
+        // },
+        getUsersTC: (page:number, count:number) => {
+            dispatch(getUsersTC(page,count))
         },
         setPage:(page:number)=>{
             dispatch(setPageAC(page))

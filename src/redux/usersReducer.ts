@@ -1,4 +1,6 @@
 import React from 'react';
+import {Dispatch} from "redux";
+import axios from "axios";
 
 export type UsersStateType = {
     users: Array<UserType>
@@ -125,4 +127,14 @@ export const setIsFollowingAC = (isFollowing: boolean, id: number) => {
         type: 'IS-FOLLOWING',
         payload: {isFollowing, id}
     } as const
+}
+
+export const getUsersTC = (page:number, count:number) => (dispatch: Dispatch) => {
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${count}`, {
+        withCredentials:true
+    }).then(resp => {
+        dispatch(setIsLoadingAC(false))
+        dispatch(getUsersAC(resp.data.items))
+        dispatch(setUsersCountAC(resp.data.totalCount))
+    })
 }
