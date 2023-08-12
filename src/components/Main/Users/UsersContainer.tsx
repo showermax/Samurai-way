@@ -1,12 +1,13 @@
 import {connect} from "react-redux";
 import {Users} from "./Users";
 import {
-    addUserAC, followUserAC,
-    getUsersAC, getUsersTC, setIsFollowingAC,
+    addUserAC,
+    followUserAC,
+    getUsersTC,
+    setIsFollowingAC,
     setIsLoadingAC,
     setPageAC,
     setUsersCountAC,
-    UsersStateType,
     UserType
 } from "../../../redux/usersReducer";
 import s from './Users.module.css'
@@ -14,7 +15,6 @@ import {ReduxStateType} from "../../../redux/reduxStore";
 import React from "react";
 import axios from "axios";
 import {Loader} from "../../Common/Loader";
-import {usersApi} from "../../../DAL/api/api";
 
 type UsersClassPropsType = {
     userList: UserType[],
@@ -55,11 +55,7 @@ class UsersClass extends React.Component<UsersClassPropsType> {
 
     changePage = (page: number) => {
         this.props.setPage(page)
-        this.props.setIsLoading(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.count}`).then(resp => {
-            this.props.setIsLoading(false)
-            // this.props.getUsers(resp.data.items)
-        })
+        this.props.getUsersTC(page, this.props.count)
     }
     follow = (id:number) => {
         this.props.setIsFollowing(true, id)
@@ -89,7 +85,7 @@ class UsersClass extends React.Component<UsersClassPropsType> {
         />}
     </>
     }
-};
+}
 const mapStateToProps = (state: ReduxStateType) => {
     return {
         userList: state.forUsers.users,
