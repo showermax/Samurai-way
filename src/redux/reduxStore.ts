@@ -1,4 +1,5 @@
-import {combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
+import thunk from 'redux-thunk';
 import {ProfileReducer} from "./profileReducer";
 import {ChatReducer} from "./chatReducer";
 import {UsersReducer} from "./usersReducer";
@@ -12,6 +13,6 @@ let reducers = combineReducers({
 })
 
 
-let store = createStore(reducers)
+let store = createStore(reducers, applyMiddleware(thunk))
 export type ReduxStateType = ReturnType<typeof reducers>
 export default store;
