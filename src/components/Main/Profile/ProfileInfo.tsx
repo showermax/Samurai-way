@@ -2,26 +2,42 @@ import React from "react";
 import style from "./Profile.module.css"
 import avatar from "../../../img/ava.jpg"
 import {ProfileInfoType} from "../../../redux/state";
+import {logDOM} from "@testing-library/react";
+import {brotliCompress} from "zlib";
 type PropsType = {
     profileInfo: ProfileInfoType
 }
-export function ProfileInfo(props:PropsType) {
+export function ProfileInfo({profileInfo}:PropsType) {
+    console.log(profileInfo)
+    const contacts = []
+    for (const contactsKey in profileInfo.contacts) {
+        contacts.push(`${contactsKey}: ${profileInfo.contacts[contactsKey] ? profileInfo.contacts[contactsKey] : ''}`)
+    }
     return (
         <div>
             <div className={style.header}>
             </div>
             <div className={style.description}>
             <div>
-                <img className={style.avatar} src={avatar} alt='avatar'/>
+                <img className={style.avatar} src={profileInfo.photos.small} alt='avatar'/>
             </div>
             <div>
-                <h4> Max the man</h4>
-                <p> Age: 36<br/>
-                    City: Minsk<br/>
-                    Hobby: radio modelling</p>
+                <h2> {profileInfo.fullName}</h2>
+                <h3> {profileInfo.aboutMe}</h3>
+                {profileInfo.lookingForAJob ?
+                    <>
+                        <div>I'm looking for a job</div>
+                        <div>{profileInfo.lookingForAJobDescription}</div>
+                    </>
+                    :
+                    <div>I have got a job already or just don't need it</div>
+                }
+                <h3> My contacts: <br/>
+                    {
+                        contacts.map(el=><> {el}<br/></>)
+                    }
+                </h3>
             </div>
-                <div>{props.profileInfo.fullName}</div>
-                <div><img src={props.profileInfo.photos.small} className={style.avatar}/> </div>
             </div>
         </div>
     );

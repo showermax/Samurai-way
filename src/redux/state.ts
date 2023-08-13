@@ -38,7 +38,7 @@ export type ForProfileType = {
 }
 export type ProfileInfoType = {
     aboutMe: string
-    contacts: any
+    contacts: { [key:string]: null | string }
     lookingForAJob: boolean
     lookingForAJobDescription: string
     fullName: string
