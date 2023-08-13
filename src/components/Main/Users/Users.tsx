@@ -30,7 +30,7 @@ export const Users: React.FC<UsersPropsType> = ({totalCount, count, userList, ch
             <div className={s.grid}>{userList.map(el => {
                     let styleNumber = Math.floor(Math.random() * 2)
                 const followHandler = () => {
-                    el.followed ?  unfollow(el.id) : follow(el.id)
+                   follow(el.id)
                 }
                     return (
                         <div key={el.id} className={el.followed ? s.item : styleNumber === 1 ? s.item1 : s.item2}>

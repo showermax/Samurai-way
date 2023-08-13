@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import {Users} from "./Users";
 import {
-    addUserAC,
+    addUserAC, followTC,
     followUserAC,
     getUsersTC,
     setIsFollowingAC,
@@ -58,11 +58,13 @@ class UsersClass extends React.Component<UsersClassPropsType> {
         this.props.getUsersTC(page, this.props.count)
     }
     follow = (id:number) => {
-        this.props.setIsFollowing(true, id)
-        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {}, {withCredentials:true}).then(resp => {
-            this.props.setIsFollowing(false, id)
-            if (resp.data.resultCode === 0) this.props.following(id)
-        })
+        this.props.following(id)
+        // this.props.setIsFollowing(true, id)
+        // axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {}, {withCredentials:true}).then(resp => {
+        //     this.props.setIsFollowing(false, id)
+        //     if (resp.data.resultCode === 0) this.props.following(id)
+        // })
+
     }
     unfollow = (id:number) => {
         this.props.setIsFollowing(true, id)
@@ -80,7 +82,7 @@ class UsersClass extends React.Component<UsersClassPropsType> {
                                totalCount={this.props.totalCount}
                changePage={this.changePage}
                follow={this.follow}
-               unfollow = {this.unfollow}
+               unfollow = {this.follow}
                isFollowingArr={this.props.isFollowingArr}
         />}
     </>
@@ -117,7 +119,7 @@ const mapDispatchToProps = (dispatch: (action:any)=>void) => {
             dispatch(setIsLoadingAC(isLoading))
         },
         following:(id:number) => {
-            dispatch(followUserAC(id))
+            dispatch(followTC(id))
         },
         setIsFollowing:(isFollowing:boolean, id: number) =>{
             dispatch(setIsFollowingAC(isFollowing,id))

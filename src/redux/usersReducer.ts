@@ -1,5 +1,6 @@
 import {Dispatch} from "redux";
 import {usersApi} from "../DAL/api/api";
+import {ReduxStateType} from "./reduxStore";
 
 export type UsersStateType = {
     users: Array<UserType>
@@ -135,4 +136,25 @@ export const getUsersTC = (page:number, count:number) => (dispatch: Dispatch) =>
         dispatch(getUsersAC(resp.data.items))
         dispatch(setUsersCountAC(resp.data.totalCount))
     })
+}
+export const followTC = (id:number) => async (dispatch: Dispatch, getState: ()=>ReduxStateType) =>{
+    dispatch(setIsFollowingAC(true,id))
+    console.log(getState().forUsers.users.find(el=>el.id===id)?.followed)
+    try {
+        if (!getState().forUsers.users.find(el=>el.id===id)?.followed) {
+            let res = await usersApi.followUser(id)
+            if (res.data.resultCode === 0) dispatch(followUserAC(id))
+        }
+        else {
+            let res = await usersApi.unFollowUser(id)
+            if (res.data.resultCode === 0) dispatch(followUserAC(id))
+        }
+
+    }
+    catch (e) {
+
+    }
+    finally {
+        dispatch(setIsFollowingAC(false,id))
+    }
 }
