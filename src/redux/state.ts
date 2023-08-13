@@ -1,8 +1,8 @@
 // let rerenderEntireTree = () => {
 // }
 
-import {ProfileActionType, ProfileReducer} from "./profileReducer";
-import {ChatActionType, ChatReducer} from "./chatReducer";
+import {ProfileActionType} from "./profileReducer";
+import {ChatActionType} from "./chatReducer";
 
 export type DialogsType = {
     id: number

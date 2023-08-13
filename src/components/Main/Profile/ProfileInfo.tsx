@@ -1,9 +1,8 @@
 import React from "react";
 import style from "./Profile.module.css"
-import avatar from "../../../img/ava.jpg"
+import avatar from "../../../assets/img/user-profile-icon.png"
 import {ProfileInfoType} from "../../../redux/state";
-import {logDOM} from "@testing-library/react";
-import {brotliCompress} from "zlib";
+
 type PropsType = {
     profileInfo: ProfileInfoType
 }
@@ -19,7 +18,7 @@ export function ProfileInfo({profileInfo}:PropsType) {
             </div>
             <div className={style.description}>
             <div>
-                <img className={style.avatar} src={profileInfo.photos.small} alt='avatar'/>
+                <img className={style.avatar} src={profileInfo.photos.small || avatar} alt='avatar'/>
             </div>
             <div>
                 <h2> {profileInfo.fullName}</h2>
