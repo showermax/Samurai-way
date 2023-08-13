@@ -1,19 +1,9 @@
 import {connect} from "react-redux";
 import {Users} from "./Users";
-import {
-    addUserAC, followTC,
-    followUserAC,
-    getUsersTC,
-    setIsFollowingAC,
-    setIsLoadingAC,
-    setPageAC,
-    setUsersCountAC,
-    UserType
-} from "../../../redux/usersReducer";
+import {followTC, getUsersTC, setPageAC, UserType} from "../../../redux/usersReducer";
 import s from './Users.module.css'
 import {ReduxStateType} from "../../../redux/reduxStore";
 import React from "react";
-import axios from "axios";
 import {Loader} from "../../Common/Loader";
 
 type UsersClassPropsType = {
@@ -23,14 +13,14 @@ type UsersClassPropsType = {
     totalCount: number
     isLoading:boolean
     isFollowingArr:Array<number>
-    addUser: () => void
+    // addUser: () => void
     // getUsers: (users: UserType[]) => void
     getUsersTC: (page:number, count: number) => void
     following: (id: number) => void
     setPage: (page: number) => void
-    setUsersCount: (c: number) => void
-    setIsLoading: (i: boolean) => void
-    setIsFollowing: (i:boolean, id: number) => void
+    // setUsersCount: (c: number) => void
+    // setIsLoading: (i: boolean) => void
+    // setIsFollowing: (i:boolean, id: number) => void
 }
 class UsersClass extends React.Component<UsersClassPropsType> {
     // constructor(props:any) {
@@ -66,13 +56,13 @@ class UsersClass extends React.Component<UsersClassPropsType> {
         // })
 
     }
-    unfollow = (id:number) => {
-        this.props.setIsFollowing(true, id)
-        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`,  {withCredentials:true}).then(resp => {
-            this.props.setIsFollowing(false, id)
-            if (resp.data.resultCode === 0) this.props.following(id)
-        })
-    }
+    // unfollow = (id:number) => {
+    //     this.props.setIsFollowing(true, id)
+    //     axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`,  {withCredentials:true}).then(resp => {
+    //         this.props.setIsFollowing(false, id)
+    //         if (resp.data.resultCode === 0) this.props.following(id)
+    //     })
+    // }
 
     render() {return <>
         {this.props.isLoading ? <div className={s.loading}><Loader/></div> :
@@ -82,7 +72,7 @@ class UsersClass extends React.Component<UsersClassPropsType> {
                                totalCount={this.props.totalCount}
                changePage={this.changePage}
                follow={this.follow}
-               unfollow = {this.follow}
+               // unfollow = {this.follow}
                isFollowingArr={this.props.isFollowingArr}
         />}
     </>
@@ -100,9 +90,9 @@ const mapStateToProps = (state: ReduxStateType) => {
 }
 const mapDispatchToProps = (dispatch: (action:any)=>void) => {
     return {
-        addUser: () => {
-            dispatch(addUserAC())
-        },
+        // addUser: () => {
+        //     dispatch(addUserAC())
+        // },
         // getUsers: (users: UserType[]) =>{
         //     dispatch(getUsersAC(users))
         // },
@@ -112,18 +102,18 @@ const mapDispatchToProps = (dispatch: (action:any)=>void) => {
         setPage:(page:number)=>{
             dispatch(setPageAC(page))
         },
-        setUsersCount: (totalCount: number) =>{
-            dispatch(setUsersCountAC(totalCount))
-        },
-        setIsLoading: (isLoading: boolean) =>{
-            dispatch(setIsLoadingAC(isLoading))
-        },
+        // setUsersCount: (totalCount: number) =>{
+        //     dispatch(setUsersCountAC(totalCount))
+        // },
+        // setIsLoading: (isLoading: boolean) =>{
+        //     dispatch(setIsLoadingAC(isLoading))
+        // },
         following:(id:number) => {
             dispatch(followTC(id))
         },
-        setIsFollowing:(isFollowing:boolean, id: number) =>{
-            dispatch(setIsFollowingAC(isFollowing,id))
-    }
+        // setIsFollowing:(isFollowing:boolean, id: number) =>{
+        //     dispatch(setIsFollowingAC(isFollowing,id))
+    // }
     }
 }
 export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersClass)

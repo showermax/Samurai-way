@@ -1,6 +1,5 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {UserType} from "../../../redux/usersReducer";
-import axios from "axios";
 import {NavLink} from "react-router-dom";
 import s from './Users.module.css';
 import favouriteRed from './favorite-red.png'
@@ -14,11 +13,11 @@ type UsersPropsType = {
     totalCount: number
     changePage: (page: number) => void
     follow: (id: number) => void
-    unfollow: (id: number) => void
+    // unfollow: (id: number) => void
     isFollowingArr: Array<number>
 }
 
-export const Users: React.FC<UsersPropsType> = ({totalCount, count, userList, changePage, page, follow, unfollow, isFollowingArr}) => {
+export const Users: React.FC<UsersPropsType> = ({totalCount, count, userList, changePage, page, follow, isFollowingArr}) => {
     let arr = []
     let k = totalCount / 100
     let numberOfPages = Math.ceil(k / count)
@@ -30,7 +29,8 @@ export const Users: React.FC<UsersPropsType> = ({totalCount, count, userList, ch
             <div className={s.grid}>{userList.map(el => {
                     let styleNumber = Math.floor(Math.random() * 2)
                 const followHandler = () => {
-                   follow(el.id)
+                    // el.followed ?  unfollow(el.id) : follow(el.id)
+                    follow(el.id)
                 }
                     return (
                         <div key={el.id} className={el.followed ? s.item : styleNumber === 1 ? s.item1 : s.item2}>
@@ -39,7 +39,7 @@ export const Users: React.FC<UsersPropsType> = ({totalCount, count, userList, ch
                                 <img className={s.img} src={el.photos.large ? el.photos.large : ''} alt=""/>
                                 <div className={s.userName}>{el.name}</div>
                             </NavLink>
-                            <div className={`${s.followed} ${isFollowingArr.includes(el.id) ? s.disabled :null}`} onClick={followHandler}><img src = {el.followed ? favouriteRed : favouriteEmpty}/></div>
+                            <div className={`${s.followed} ${isFollowingArr.includes(el.id) ? s.disabled :null}`} onClick={followHandler}><img alt = 'follow user' src = {el.followed ? favouriteRed : favouriteEmpty}/></div>
                         </div>)
                 }
             )
