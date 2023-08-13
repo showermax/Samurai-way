@@ -1,13 +1,17 @@
 .header {
-    height: 200px;
-    background: url(../../../assets/img/clouds.jpg) no-repeat center bottom;
+    height: 100px;
+    width:100%;
+    opacity: 0.5;
     margin-top:10px;
 }
-
+.header img {
+    opacity: 0.8;
+}
 .description {
+    color: white;
     display: grid;
     grid-template-columns: 150px 1fr;
-    align-items: center;
+    align-items: start;
 }
 
 .avatar {
