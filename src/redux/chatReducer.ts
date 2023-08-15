@@ -52,7 +52,7 @@ export const ChatReducer = (state: ForDialogsType = initialState, action: AllAct
             return {...state, chatMessages: newChatMessages}
         }
         case 'GET-FRIENDS': {
-            return {...state, ...action.payload.friends}
+            return {...state, dialogsList: [...state.dialogsList, ...action.payload.friends]}
         }
         default: return state
 
