@@ -17,7 +17,14 @@ import {ReduxStateType} from "../../../redux/reduxStore";
 //     dialogsList: Array<DialogsType>
 //     dispatch: (action: AllActionType) => void
 // }
+class DialogsClass extends React.Component<any, any> {
+    componentDidMount() {
 
+    }
+    render() {
+        return <Dialogs dialogsList = {this.props.dialogsList} chatMessages = {this.props.chatMessages} sendMessage = {this.props.sendMessage}/>;
+    }
+}
 const mapStateToProps = (state: ReduxStateType)=>{
     return {
         chatMessages: state.forDialogs.chatMessages,
@@ -33,4 +40,4 @@ const mapDispatchToProps = (dispatch: (action: AllActionType) => void)=>{
 }
 
 
-export const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(Dialogs)
+export const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(DialogsClass)
