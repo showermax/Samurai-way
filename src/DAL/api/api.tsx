@@ -20,3 +20,9 @@ export const usersApi = {
         return instance.delete(`follow/${id}`)
     }
 }
+
+export const profileApi = {
+    getProfile(id:number) {
+        return instance.get(`profile/${id}`)
+    }
+}

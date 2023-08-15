@@ -1,5 +1,7 @@
 import React from 'react';
 import {AllActionType, ForProfileType, ProfileInfoType} from "./state";
+import {profileApi} from "../DAL/api/api";
+import {Dispatch} from "redux";
 const initialState: ForProfileType = {
     postsList: [
         {
@@ -50,4 +52,14 @@ export const getProfileInfoAC = (profileInfo:ProfileInfoType) => {
         type: 'GET-INFO',
         payload:{profileInfo}
     }as const
+}
+
+export const getProfileTC = (id:number) => async (dispatch: Dispatch) => {
+        try {
+            const res = await profileApi.getProfile(id)
+            dispatch(getProfileInfoAC(res.data))
+        }
+        catch (e) {
+            
+        }
 }

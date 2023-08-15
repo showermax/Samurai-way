@@ -4,8 +4,8 @@ import axios from "axios";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
 import {ReduxStateType} from "../../../redux/reduxStore";
-import {ProfileInfoType} from "../../../redux/state";
-import {getProfileInfoAC} from "../../../redux/profileReducer";
+import {PostsListType, ProfileInfoType} from "../../../redux/state";
+import {getProfileInfoAC, getProfileTC} from "../../../redux/profileReducer";
 import {useParams} from "react-router-dom";
 
 
@@ -20,12 +20,22 @@ const withRouter = (WrappedComponent:any) => (props:any) => {
         />
     );
 };
+type ProfileClassPropsType = {
+    getProfile: (id:number) => void,
+    getProfileInfo: (profileInfo: ProfileInfoType) => void,
+    postsList: PostsListType[],
+    profileInfo: ProfileInfoType
+}
+
 class ProfileClass extends React.Component<any, any>{
 
     componentDidMount() {
+        // console.log(this.props.profileInfo.userId)
         let userId = this.props.params.userId
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then((resp)=>{
-            this.props.getProfileInfo(resp.data)})
+        this.props.getProfile(userId)
+        // let userId = this.props.params.userId
+        // axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then((resp)=>{
+        //     this.props.getProfileInfo(resp.data)})
     }
     render() {
         return <Profile profileInfo = {this.props.profileInfo}/>
@@ -41,10 +51,13 @@ const mapStateToProps = (state:ReduxStateType)=>{
        profileInfo: state.forProfile.profileInfo
    }
 }
-const mapDispatchToProps = (dispatch: Dispatch)=>{
-    return{
+const mapDispatchToProps = (dispatch: (action:any)=>void) =>{
+    return {
         getProfileInfo: (profileInfo: ProfileInfoType) => {
             dispatch(getProfileInfoAC(profileInfo))
+        },
+        getProfile: (id:number) => {
+            dispatch(getProfileTC(id))
         }
     }
 
