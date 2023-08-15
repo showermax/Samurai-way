@@ -2,6 +2,7 @@ import React from 'react';
 import {AllActionType, ForDialogsType} from "./state";
 import {Dispatch} from "redux";
 import {usersApi} from "../DAL/api/api";
+import {UserType} from "./usersReducer";
 
 let initialState:ForDialogsType = {
         chatMessages: [
@@ -27,13 +28,13 @@ let initialState:ForDialogsType = {
             }
         ],
         dialogsList: [
-            {id: 1, name: 'Danik'},
-            {id: 2, name: 'Kirill'},
-            {id: 3, name: 'Ivan'},
-            {id: 4, name: 'Denis'},
-            {id: 5, name: 'Andrei'},
-            {id: 6, name: 'Demiyan'},
-            {id: 7, name: 'Arsenyi'}
+            // {id: 1, name: 'Danik'},
+            // {id: 2, name: 'Kirill'},
+            // {id: 3, name: 'Ivan'},
+            // {id: 4, name: 'Denis'},
+            // {id: 5, name: 'Andrei'},
+            // {id: 6, name: 'Demiyan'},
+            // {id: 7, name: 'Arsenyi'}
         ]
 
     }
@@ -50,13 +51,17 @@ export const ChatReducer = (state: ForDialogsType = initialState, action: AllAct
             } : el)
             return {...state, chatMessages: newChatMessages}
         }
+        case 'GET-FRIENDS': {
+            return {...state, ...action.payload.friends}
+        }
         default: return state
 
     }
 };
-export type ChatActionType = AddMessageACType
+export type ChatActionType = AddMessageACType | GetFriendsACType
 
 type AddMessageACType = ReturnType<typeof addMessageAC>
+type GetFriendsACType = ReturnType<typeof getFriendsAC>
 //     {
 //     type: 'ADD-MESSAGE',
 //     payload: {
@@ -73,12 +78,20 @@ export const addMessageAC = (newmessage: string, id: number,  author: boolean) =
         }
     } as const
 }
+const getFriendsAC = (friends:UserType[]) => {
+    return {
+        type: 'GET-FRIENDS',
+        payload: {
+            friends
+        }
+    } as const
+}
 
 export const getFriends = () => async (dispatch: Dispatch) => {
     try {
         const res = await usersApi.getUsers(1,100)
         const friends = res.data.items.filter(el=>el.followed)
-        console.log(friends)
+        dispatch(getFriendsAC(friends))
     }
     catch{
 

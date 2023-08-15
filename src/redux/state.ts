@@ -2,6 +2,7 @@
 
 import {ProfileActionType} from "./profileReducer";
 import {ChatActionType} from "./chatReducer";
+import {UserType} from "./usersReducer";
 
 export type DialogsType = {
     id: number
@@ -28,7 +29,7 @@ export type PostsListType = {
 }
 export type ForDialogsType = {
     chatMessages: Array<ChatMessagesType>
-    dialogsList: Array<DialogsType>
+    dialogsList: Array<UserType>
 }
 
 export type ForProfileType = {

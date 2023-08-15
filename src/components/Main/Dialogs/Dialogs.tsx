@@ -25,7 +25,6 @@ export function Dialogs(props: DialogsPropsType) {
         props.sendMessage(messageField.current!.value, id, author)
         messageField.current!.value = ''
     }
-    console.log(props.dialogsList)
     return (
         <div className={style.wrapper}>
             <div className={style.dialogs}>

@@ -7,7 +7,7 @@ import {
     ForDialogsType, StateType
 } from "../../../redux/state";
 import Chat from "./Chat";
-import {addMessageAC} from "../../../redux/chatReducer";
+import {addMessageAC, getFriends} from "../../../redux/chatReducer";
 import {connect} from "react-redux";
 import {Dialogs} from "./Dialogs";
 import {ReduxStateType} from "../../../redux/reduxStore";
@@ -19,7 +19,7 @@ import {ReduxStateType} from "../../../redux/reduxStore";
 // }
 class DialogsClass extends React.Component<any, any> {
     componentDidMount() {
-
+        this.props.getFriends()
     }
     render() {
         return <Dialogs dialogsList = {this.props.dialogsList} chatMessages = {this.props.chatMessages} sendMessage = {this.props.sendMessage}/>;
@@ -31,11 +31,14 @@ const mapStateToProps = (state: ReduxStateType)=>{
         dialogsList: state.forDialogs.dialogsList
     }
 }
-const mapDispatchToProps = (dispatch: (action: AllActionType) => void)=>{
+const mapDispatchToProps = (dispatch: (action: any) => void)=>{
     return {
          sendMessage: (message:string,id:number,author:boolean)=>{
              dispatch(addMessageAC(message,id,author))
-         }
+         },
+        getFriends: ()=>{
+             dispatch(getFriends())
+        }
     }
 }
 
