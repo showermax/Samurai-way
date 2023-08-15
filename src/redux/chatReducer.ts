@@ -1,5 +1,7 @@
 import React from 'react';
 import {AllActionType, ForDialogsType} from "./state";
+import {Dispatch} from "redux";
+import {usersApi} from "../DAL/api/api";
 
 let initialState:ForDialogsType = {
         chatMessages: [
@@ -72,3 +74,13 @@ export const addMessageAC = (newmessage: string, id: number,  author: boolean) =
     } as const
 }
 
+export const getFriends = () => async (dispatch: Dispatch) => {
+    try {
+        const res = await usersApi.getUsers(1,100)
+        const friends = res.data.items.filter(el=>el.followed)
+        console.log(friends)
+    }
+    catch{
+
+    }
+}

@@ -1,14 +1,10 @@
 import React from "react";
 import Profile from "./Profile";
-import axios from "axios";
 import {connect} from "react-redux";
-import {Dispatch} from "redux";
 import {ReduxStateType} from "../../../redux/reduxStore";
 import {PostsListType, ProfileInfoType} from "../../../redux/state";
 import {getProfileInfoAC, getProfileTC} from "../../../redux/profileReducer";
 import {useParams} from "react-router-dom";
-
-
 
 
 const withRouter = (WrappedComponent:any) => (props:any) => {
