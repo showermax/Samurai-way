@@ -52,8 +52,15 @@ export const ChatReducer = (state: ForDialogsType = initialState, action: AllAct
             return {...state, chatMessages: newChatMessages}
         }
         case 'GET-FRIENDS': {
-            return {...state, dialogsList: [...state.dialogsList, ...action.payload.friends]}
+            let chats = action.payload.friends.map(el=> ({...el, friend_id: el.id,friend: el.name, chat:[]}))
+            console.log(chats)
+            console.log(state.chatMessages)
+            return {...state,
+                dialogsList: [...state.dialogsList, ...action.payload.friends],
+                chatMessages: [...state.chatMessages, ...chats]
+            }
         }
+
         default: return state
 
     }
