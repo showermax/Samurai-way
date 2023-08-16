@@ -26,7 +26,7 @@ type ProfileClassPropsType = {
 class ProfileClass extends React.Component<any, any>{
 
     componentDidMount() {
-        // console.log(this.props.profileInfo.userId)
+
         let userId = this.props.params.userId
         this.props.getProfile(userId)
         // let userId = this.props.params.userId

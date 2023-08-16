@@ -1,4 +1,3 @@
-import React from 'react';
 import {AllActionType, ForDialogsType} from "./state";
 import {Dispatch} from "redux";
 import {usersApi} from "../DAL/api/api";
@@ -53,8 +52,6 @@ export const ChatReducer = (state: ForDialogsType = initialState, action: AllAct
         }
         case 'GET-FRIENDS': {
             let chats = action.payload.friends.map(el=> ({...el, friend_id: el.id,friend: el.name, chat:[]}))
-            console.log(chats)
-            console.log(state.chatMessages)
             return {...state,
                 dialogsList: [...state.dialogsList, ...action.payload.friends],
                 chatMessages: [...state.chatMessages, ...chats]
