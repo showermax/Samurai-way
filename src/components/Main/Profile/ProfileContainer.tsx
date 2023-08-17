@@ -7,6 +7,7 @@ import {getProfileInfoAC, getProfileTC} from "../../../redux/profileReducer";
 import {useParams} from "react-router-dom";
 
 
+
 const withRouter = (WrappedComponent:any) => (props:any) => {
     const params = useParams();
     return (
@@ -22,8 +23,12 @@ type ProfileClassPropsType = {
     postsList: PostsListType[],
     profileInfo: ProfileInfoType
 }
+type ParamsType = {
+    params: {userId: number}
+}
+type PropsType = ParamsType & ProfileClassPropsType
 
-class ProfileClass extends React.Component<any, any>{
+class ProfileClass extends React.Component<PropsType>{
 
     componentDidMount() {
 
