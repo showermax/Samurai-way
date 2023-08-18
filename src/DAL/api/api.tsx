@@ -26,3 +26,9 @@ export const profileApi = {
         return instance.get(`profile/${id}`)
     }
 }
+
+export const authApi = {
+    getAuthInfo () {
+        return axios.get('https://social-network.samuraijs.com/api/1.0/auth/me',{withCredentials: true})
+    }
+}

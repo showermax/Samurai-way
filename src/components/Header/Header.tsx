@@ -8,7 +8,7 @@ export function Header(props:any) {
         <header className={style.header}>
             <img src={logo}/>
             <div className={style.brand}>Stay in touch</div>
-            <div>+++++{props.loginData.email}+++++++</div>
+            <div style = {{'color': 'white'}}>+++++{props.loginData.email}+++++++</div>
 
         </header>
     );

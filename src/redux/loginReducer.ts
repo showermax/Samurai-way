@@ -1,4 +1,6 @@
 import React from 'react';
+import {authApi} from "../DAL/api/api";
+import {Dispatch} from "redux";
 
 export type AuthType = {
     id: number | undefined
@@ -23,4 +25,14 @@ export const getAuthInfoAC = (data: AuthType) => {
         type: 'AUTHORIZATION',
         payload: data
     } as const
+}
+
+export const getAuthInfoTC = () => async (dispatch: Dispatch) => {
+    try {
+        const res = await authApi.getAuthInfo()
+        dispatch(getAuthInfoAC(res.data.data))
+    }
+    catch (e) {
+
+    }
 }

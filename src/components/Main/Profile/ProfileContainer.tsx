@@ -6,7 +6,7 @@ import {PostsListType, ProfileInfoType} from "../../../redux/state";
 import {getProfileInfoAC, getProfileTC} from "../../../redux/profileReducer";
 import {useParams} from "react-router-dom";
 
-const withRouter = (WrappedComponent: any) => (props:PropsType) => {
+const withRouter = (WrappedComponent: any) => (props:any) => {
     const params = useParams();
     return (
         <WrappedComponent
